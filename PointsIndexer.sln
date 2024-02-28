@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C3022ECE-9FC4-4F50-8EDB-85532F6ADC8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BCA05EEC-6025-4CE7-8428-3E469E7BB9DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Points.Indexer.Plugin", "src\Points.Indexer.Plugin\Points.Indexer.Plugin.csproj", "{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838} = {C3022ECE-9FC4-4F50-8EDB-85532F6ADC8B}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
