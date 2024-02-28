@@ -32,7 +32,7 @@ public class AppliedLogEventProcessor : AElfLogEventProcessorBase<InviterApplied
     
     public override string GetContractAddress(string chainId)
     {
-        return _contractInfoOptions.ContractInfos.First(c => c.ChainId == chainId).NFTDropContractAddress;
+        return _contractInfoOptions.ContractInfos.First(c => c.ChainId == chainId).PointsContractAddress;
     }
     
     protected override async Task HandleEventAsync(InviterApplied eventValue, LogEventContext context)

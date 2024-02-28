@@ -8,5 +8,5 @@ public class ContractInfoOptions
 public class ContractInfo
 {
     public string ChainId { get; set; }
-    public string NFTDropContractAddress { get; set; }
+    public string PointsContractAddress { get; set; }
 }
