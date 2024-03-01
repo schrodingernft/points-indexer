@@ -40,4 +40,25 @@ public class Query
 
         return domainIndexList.Item2.Select(i => i.Domain).ToList();
     }
+
+
+    [Name("getPointsSumBySymbol")]
+    public static async Task<List<string>> GetPointsSumBySymbol(
+        [FromServices] IAElfIndexerClientEntityRepository<AddressPointsSumBySymbolIndex, LogEventInfo> repository,
+        [FromServices] IObjectMapper objectMapper,
+        CheckDomainAppliedDto dto)
+    {
+        if (dto.DomainList.IsNullOrEmpty()) return null;
+
+        var mustQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>();
+        mustQuery.Add(q => q.Terms(i => i.Field(f => f.Domain)
+            .Terms(dto.DomainList)));
+
+        QueryContainer Filter(QueryContainerDescriptor<AddressPointsSumBySymbolIndex> f) =>
+            f.Bool(b => b.Must(mustQuery));
+
+        var domainIndexList = await repository.GetListAsync(Filter);
+
+        return domainIndexList.Item2.Select(i => i.Domain).ToList();
+    }
 }
