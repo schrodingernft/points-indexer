@@ -258,6 +258,11 @@ CodeCoverage
 
 *.dll
 
+#*.c.cs
+#*.g.cs
+contract_csharp_plugin
+contract_csharp_plugin*
+
 **/wwwroot/libs/*
 bootstrap-datepicker.en-CA.min.js
 

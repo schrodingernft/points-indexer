@@ -13,7 +13,46 @@ using aelf = global::AElf.CSharp.Core;
 namespace Points.Contracts.Point {
 
   #region Events
-  public partial class Registered : aelf::IEvent<Registered>
+
+  public partial class Joined : aelf::IEvent<Joined>
+  {
+    public global::System.Collections.Generic.IEnumerable<Joined> GetIndexed()
+    {
+      return new List<Joined>
+      {
+      };
+    }
+
+    public Joined GetNonIndexed()
+    {
+      return new Joined
+      {
+        DappId = DappId,
+        Domain = Domain,
+        Registrant = Registrant,
+      };
+    }
+  }
+
+  internal partial class PointsUpdated : aelf::IEvent<PointsUpdated>
+  {
+    public global::System.Collections.Generic.IEnumerable<PointsUpdated> GetIndexed()
+    {
+      return new List<PointsUpdated>
+      {
+      };
+    }
+
+    public PointsUpdated GetNonIndexed()
+    {
+      return new PointsUpdated
+      {
+        PointStateList = PointStateList,
+      };
+    }
+  }
+
+  internal partial class Registered : aelf::IEvent<Registered>
   {
     public global::System.Collections.Generic.IEnumerable<Registered> GetIndexed()
     {
@@ -31,7 +70,7 @@ namespace Points.Contracts.Point {
     }
   }
 
-  public partial class ServicesEarningRulesChanged : aelf::IEvent<ServicesEarningRulesChanged>
+  internal partial class ServicesEarningRulesChanged : aelf::IEvent<ServicesEarningRulesChanged>
   {
     public global::System.Collections.Generic.IEnumerable<ServicesEarningRulesChanged> GetIndexed()
     {
@@ -50,7 +89,7 @@ namespace Points.Contracts.Point {
     }
   }
 
-  public partial class PointCreated : aelf::IEvent<PointCreated>
+  internal partial class PointCreated : aelf::IEvent<PointCreated>
   {
     public global::System.Collections.Generic.IEnumerable<PointCreated> GetIndexed()
     {
@@ -90,7 +129,7 @@ namespace Points.Contracts.Point {
     }
   }
 
-  public partial class PointsRecorded : aelf::IEvent<PointsRecorded>
+  internal partial class PointsRecorded : aelf::IEvent<PointsRecorded>
   {
     public global::System.Collections.Generic.IEnumerable<PointsRecorded> GetIndexed()
     {
@@ -109,7 +148,7 @@ namespace Points.Contracts.Point {
   }
 
   #endregion
-  public static partial class PointsContractContainer
+  internal static partial class PointsContractContainer
   {
     static readonly string __ServiceName = "PointsContract";
 
@@ -118,6 +157,8 @@ namespace Points.Contracts.Point {
     static readonly aelf::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Empty.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::AElf.Types.Address> __Marshaller_aelf_Address = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Types.Address.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Points.Contracts.Point.CreatePointInput> __Marshaller_CreatePointInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Points.Contracts.Point.CreatePointInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Points.Contracts.Point.JoinInput> __Marshaller_JoinInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Points.Contracts.Point.JoinInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Points.Contracts.Point.SettleInput> __Marshaller_SettleInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Points.Contracts.Point.SettleInput.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Points.Contracts.Point.RecordRegistrationInput> __Marshaller_RecordRegistrationInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Points.Contracts.Point.RecordRegistrationInput.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Points.Contracts.Point.ApplyToOperatorInput> __Marshaller_ApplyToOperatorInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Points.Contracts.Point.ApplyToOperatorInput.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Points.Contracts.Point.PointsSettlementInput> __Marshaller_PointsSettlementInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Points.Contracts.Point.PointsSettlementInput.Parser.ParseFrom);
@@ -158,6 +199,20 @@ namespace Points.Contracts.Point {
         __ServiceName,
         "CreatePoint",
         __Marshaller_CreatePointInput,
+        __Marshaller_google_protobuf_Empty);
+
+    static readonly aelf::Method<global::Points.Contracts.Point.JoinInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Join = new aelf::Method<global::Points.Contracts.Point.JoinInput, global::Google.Protobuf.WellKnownTypes.Empty>(
+        aelf::MethodType.Action,
+        __ServiceName,
+        "Join",
+        __Marshaller_JoinInput,
+        __Marshaller_google_protobuf_Empty);
+
+    static readonly aelf::Method<global::Points.Contracts.Point.SettleInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Settle = new aelf::Method<global::Points.Contracts.Point.SettleInput, global::Google.Protobuf.WellKnownTypes.Empty>(
+        aelf::MethodType.Action,
+        __ServiceName,
+        "Settle",
+        __Marshaller_SettleInput,
         __Marshaller_google_protobuf_Empty);
 
     static readonly aelf::Method<global::Points.Contracts.Point.RecordRegistrationInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_RecordRegistration = new aelf::Method<global::Points.Contracts.Point.RecordRegistrationInput, global::Google.Protobuf.WellKnownTypes.Empty>(
@@ -271,7 +326,29 @@ namespace Points.Contracts.Point {
       }
     }
     #endregion
-    
+
+    public class PointsContractReferenceState : global::AElf.Sdk.CSharp.State.ContractReferenceState
+    {
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.InitializeInput, global::Google.Protobuf.WellKnownTypes.Empty> Initialize { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::AElf.Types.Address, global::Google.Protobuf.WellKnownTypes.Empty> SetAdmin { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Empty, global::AElf.Types.Address> GetAdmin { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.CreatePointInput, global::Google.Protobuf.WellKnownTypes.Empty> CreatePoint { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.JoinInput, global::Google.Protobuf.WellKnownTypes.Empty> Join { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.SettleInput, global::Google.Protobuf.WellKnownTypes.Empty> Settle { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.RecordRegistrationInput, global::Google.Protobuf.WellKnownTypes.Empty> RecordRegistration { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.ApplyToOperatorInput, global::Google.Protobuf.WellKnownTypes.Empty> ApplyToOperator { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.PointsSettlementInput, global::Google.Protobuf.WellKnownTypes.Empty> PointsSettlement { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Int32Value, global::Google.Protobuf.WellKnownTypes.Empty> SetMaxRecordListCount { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Int32Value, global::Google.Protobuf.WellKnownTypes.Empty> SetMaxRegistrationListCount { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Int32Value, global::Google.Protobuf.WellKnownTypes.Empty> SetMaxApplyCount { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.SetReservedDomainListInput, global::Google.Protobuf.WellKnownTypes.Empty> SetReservedDomainList { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Empty, global::Points.Contracts.Point.GetReservedDomainListOutput> GetReservedDomainList { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.SetServicesEarningRulesInput, global::Google.Protobuf.WellKnownTypes.Empty> SetServicesEarningRules { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.GetServicesEarningRulesInput, global::Points.Contracts.Point.GetServicesEarningRulesOutput> GetServicesEarningRules { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Int32Value> GetMaxRecordListCount { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Int32Value> GetMaxApplyCount { get; set; }
+      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.StringValue, global::Points.Contracts.Point.DomainOperatorRelationship> GetDomainApplyInfo { get; set; }
+    }
   }
 }
 #endregion
