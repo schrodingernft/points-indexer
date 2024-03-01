@@ -36,24 +36,33 @@ public class JoinedLogEventProcessor : AElfLogEventProcessorBase<Joined, LogEven
 
     protected override async Task HandleEventAsync(Joined eventValue, LogEventContext context)
     {
-        _logger.Debug("JoinedEvent: {eventValue} context: {context}", JsonConvert.SerializeObject(eventValue),
-            JsonConvert.SerializeObject(context));
-        var id = IdGenerateHelper.GetId(eventValue.DappId.ToHex(), eventValue.Registrant.ToBase58());
-        if (await _operatorUserRepository.GetAsync(id) != null)
+        try
         {
-            _logger.LogWarning("User {User} of {DApp} exists", eventValue.Registrant.ToBase58(), eventValue.DappId.ToHex());
-            return;
+            _logger.Debug("JoinedEvent: {eventValue} context: {context}", JsonConvert.SerializeObject(eventValue),
+                JsonConvert.SerializeObject(context));
+            var id = IdGenerateHelper.GetId(eventValue.DappId.ToHex(), eventValue.Registrant.ToBase58());
+            if (await _operatorUserRepository.GetAsync(id) != null)
+            {
+                _logger.LogWarning("User {User} of {DApp} exists", eventValue.Registrant.ToBase58(), eventValue.DappId.ToHex());
+                return;
+            }
+
+            var user = new OperatorUserIndex
+            {
+                Id = id,
+                Domain = eventValue.Domain,
+                Address = eventValue.Registrant.ToBase58(),
+                DappName = eventValue.DappId.ToHex(),
+                CreateTime = context.BlockTime.ToUtcMilliSeconds()
+            };
+
+            _objectMapper.Map(context, user);
+            await _operatorUserRepository.AddOrUpdateAsync(user);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "HandleEventAsync error");
         }
 
-        var user = new OperatorUserIndex
-        {
-            Id = id,
-            Domain = eventValue.Domain,
-            Address = eventValue.Registrant.ToBase58(),
-            DappName = eventValue.DappId.ToHex(),
-            CreateTime = DateTime.UtcNow.ToUtcMilliSeconds()
-        };
-        
-        await _operatorUserRepository.AddOrUpdateAsync(user);
     }
 }

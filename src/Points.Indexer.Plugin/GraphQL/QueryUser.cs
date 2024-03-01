@@ -4,15 +4,14 @@ using Points.Indexer.Plugin.Entities;
 using GraphQL;
 using Nest;
 using Points.Indexer.Plugin.GraphQL.Dto;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.ObjectMapping;
 
 namespace Points.Indexer.Plugin.GraphQL;
 
 public partial class Query
 {
-    [Name("QueryUser")]
-    public static async Task<OperatorUserPagerDto> QueryUser(
+    [Name("QueryUserAsync")]
+    public static async Task<OperatorUserPagerDto> QueryUserAsync(
         [FromServices] IAElfIndexerClientEntityRepository<OperatorUserIndex, LogEventInfo> repository,
         [FromServices] IObjectMapper objectMapper,
         OperatorUserRequestDto dto)

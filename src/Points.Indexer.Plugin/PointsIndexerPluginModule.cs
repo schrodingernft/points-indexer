@@ -20,6 +20,7 @@ public class PointsIndexerPluginModule : AElfIndexerClientPluginBaseModule<Point
         Configure<ContractInfoOptions>(configuration.GetSection("ContractInfo"));
     
         serviceCollection.AddSingleton<IAElfLogEventProcessor<LogEventInfo>, AppliedLogEventProcessor>();
+        serviceCollection.AddSingleton<IAElfLogEventProcessor<LogEventInfo>, JoinedLogEventProcessor>();
         serviceCollection.AddSingleton<IBlockChainDataHandler, PointsTransactionHandler>();
         
     }

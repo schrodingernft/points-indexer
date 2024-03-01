@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Points.Indexer.Plugin.Tests</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AElf.Client.Protobuf" Version="1.2.1" />
+      <PackageReference Include="coverlet.collector" Version="6.0.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Points.Indexer.Plugin\Points.Indexer.Plugin.csproj" />
+      <ProjectReference Include="..\Points.Indexer.Orleans.TestBase\Points.Indexer.Orleans.TestBase.csproj" />
+    </ItemGroup>
+
+</Project>
