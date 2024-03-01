@@ -18,14 +18,14 @@ public partial class Query
     {
         var mustQuery = new List<Func<QueryContainerDescriptor<OperatorUserIndex>, QueryContainer>>();
 
-        if (!dto.Domain.IsNullOrEmpty())
-            mustQuery.Add(q => q.Terms(i => i.Field(f => f.Domain).Terms(dto.Domain)));
+        if (!dto.DomainIn.IsNullOrEmpty())
+            mustQuery.Add(q => q.Terms(i => i.Field(f => f.Domain).Terms(dto.DomainIn)));
 
-        if (!dto.Address.IsNullOrEmpty())
-            mustQuery.Add(q => q.Terms(i => i.Field(f => f.Address).Terms(dto.Address)));
+        if (!dto.AddressIn.IsNullOrEmpty())
+            mustQuery.Add(q => q.Terms(i => i.Field(f => f.Address).Terms(dto.AddressIn)));
 
-        if (!dto.DappName.IsNullOrEmpty())
-            mustQuery.Add(q => q.Terms(i => i.Field(f => f.DappName).Terms(dto.DappName)));
+        if (!dto.DappNameIn.IsNullOrEmpty())
+            mustQuery.Add(q => q.Terms(i => i.Field(f => f.DappName).Terms(dto.DappNameIn)));
 
         if (dto.CreateTimeLt != null)
             mustQuery.Add(q => q.LongRange(i => i.Field(f => f.CreateTime).LessThan(dto.CreateTimeLt)));

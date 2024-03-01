@@ -86,10 +86,10 @@ public sealed class UserLogEventProcessorTests : PointsIndexerPluginTestBase
         
         var userPager = await Query.QueryUserAsync(userRepository, objectMapper, new OperatorUserRequestDto
         {
-            Domain = "test.dapp.io",
-            // Address = "xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"
+            DomainIn = new List<string>{"test.dapp.io"},
+            AddressIn = new List<string>{"xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"}
             // CreateTimeGtEq = ts
-            CreateTimeLt = ts
+            // CreateTimeLt = ts
         });
         userPager.ShouldNotBeNull();
         userPager.TotalRecordCount.ShouldBe(1);
