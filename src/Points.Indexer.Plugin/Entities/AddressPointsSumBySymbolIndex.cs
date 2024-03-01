@@ -11,9 +11,9 @@ public class AddressPointsSumBySymbolIndex : AElfIndexerClientEntity<string>, II
     public string Domain { get; set; }
     public Role Role { get; set; }
     public string DappName { get; set; }
-    public string Symbol1 { get; set; } 
-    public string Symbol2 { get; set; }
-    public string Symbol3 { get; set; } 
+    public string FirstSymbol { get; set; } 
+    public string SecondSymbol { get; set; }
+    public string ThirdSymbol { get; set; } 
     
     public DateTime CreateTime { get; set; }
     public DateTime UpdateTime { get; set; }
@@ -21,5 +21,5 @@ public class AddressPointsSumBySymbolIndex : AElfIndexerClientEntity<string>, II
 
 public enum Role
 {
-    
+    Inviter
 }

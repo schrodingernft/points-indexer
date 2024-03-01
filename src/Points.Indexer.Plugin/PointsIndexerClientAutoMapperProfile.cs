@@ -10,5 +10,8 @@ public class PointsIndexerClientAutoMapperProfile : Profile
     public PointsIndexerClientAutoMapperProfile()
     {
         CreateMap<OperatorDomainIndex, OperatorDomainDto>();
+        CreateMap<AddressPointsSumBySymbolIndex, PointsSumBySymbolDto>();
+        CreateMap<AddressPointsSumByActionIndex, PointsSumByActionDto>();
+        CreateMap<AddressPointsLogIndex, AddressPointsLogDto>();
     }
 }
