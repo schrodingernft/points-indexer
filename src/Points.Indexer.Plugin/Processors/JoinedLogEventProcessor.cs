@@ -15,54 +15,45 @@ public class JoinedLogEventProcessor : AElfLogEventProcessorBase<Joined, LogEven
 {
     private readonly IObjectMapper _objectMapper;
     private readonly ContractInfoOptions _contractInfoOptions;
-    private readonly IAElfIndexerClientEntityRepository<OperatorDomainIndex, LogEventInfo> _operatorDomainRepository;
+    private readonly IAElfIndexerClientEntityRepository<OperatorUserIndex, LogEventInfo> _operatorUserRepository;
     private readonly ILogger<JoinedLogEventProcessor> _logger;
-    
-    public JoinedLogEventProcessor(ILogger<JoinedLogEventProcessor> logger, 
+
+    public JoinedLogEventProcessor(ILogger<JoinedLogEventProcessor> logger,
         IObjectMapper objectMapper,
-        IAElfIndexerClientEntityRepository<OperatorDomainIndex, LogEventInfo> operatorDomainIndexRepository,
-        IOptionsSnapshot<ContractInfoOptions> contractInfoOptions
-        ) : base(logger)
+        IOptionsSnapshot<ContractInfoOptions> contractInfoOptions,
+        IAElfIndexerClientEntityRepository<OperatorUserIndex, LogEventInfo> operatorUserRepository) : base(logger)
     {
-        _operatorDomainRepository = operatorDomainIndexRepository;
-         _logger = logger;
+        _logger = logger;
         _contractInfoOptions = contractInfoOptions.Value;
         _objectMapper = objectMapper;
+        _operatorUserRepository = operatorUserRepository;
     }
-    
+
     public override string GetContractAddress(string chainId)
     {
         return _contractInfoOptions.ContractInfos.First(c => c.ChainId == chainId).PointsContractAddress;
     }
-    
+
     protected override async Task HandleEventAsync(Joined eventValue, LogEventContext context)
     {
-        _logger.Debug("AppliedEvent: {eventValue} context: {context}",JsonConvert.SerializeObject(eventValue), 
+        _logger.Debug("JoinedEvent: {eventValue} context: {context}", JsonConvert.SerializeObject(eventValue),
             JsonConvert.SerializeObject(context));
-        var id = eventValue.Domain.ToMd5();
-        var domainIndex = await _operatorDomainRepository.GetFromBlockStateSetAsync(id, context.ChainId);
-        
-        if (domainIndex != null) 
+        var id = IdGenerateHelper.GetId(eventValue.DappId.ToHex(), eventValue.Registrant.ToBase58());
+        if (await _operatorUserRepository.GetAsync(id) != null)
         {
-            _logger.Info("domain already exist: {index}",JsonConvert.SerializeObject(domainIndex));
+            _logger.LogWarning("User {User} of {DApp} exists", eventValue.Registrant.ToBase58(), eventValue.DappId.ToHex());
             return;
         }
-        //
-        // domainIndex = new OperatorDomainIndex
-        // {
-        //     Id = id,
-        //     Domain = eventValue.Domain,
-        //     DepositAddress = eventValue.Invitee.ToBase58(),
-        //     DappName = eventValue.Service,
-        //     CreateTime = context.BlockTime
-        // };
-        //
-        // if (eventValue.Inviter != null)
-        // {
-        //     domainIndex.InviterAddress = eventValue.Inviter.ToBase58();
-        // }
+
+        var user = new OperatorUserIndex
+        {
+            Id = id,
+            Domain = eventValue.Domain,
+            Address = eventValue.Registrant.ToBase58(),
+            DappName = eventValue.DappId.ToHex(),
+            CreateTime = DateTime.UtcNow.ToUtcMilliSeconds()
+        };
         
-        
-        await _operatorDomainRepository.AddOrUpdateAsync(domainIndex);
+        await _operatorUserRepository.AddOrUpdateAsync(user);
     }
 }
