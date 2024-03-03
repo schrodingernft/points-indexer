@@ -20,9 +20,9 @@ public class OperatorUserDto
 
 public class OperatorUserRequestDto : PagedResultRequestDto
 {
-    public string Domain { get; set; }
-    public string Address { get; set; }
-    public string DappName { get; set; }
+    public List<string> DomainIn { get; set; }
+    public List<string> AddressIn { get; set; }
+    public List<string> DappNameIn { get; set; }
     public long? CreateTimeLt { get; set; }
     public long? CreateTimeGtEq { get; set; }
 }
