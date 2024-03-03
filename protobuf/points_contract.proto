@@ -217,26 +217,32 @@ message ApplyToOperatorInput {
 message PointsSettlementInput {
   repeated PointsRecord points_records = 1;
 }
-message PointsRecord {
-  aelf.Address pointer_address = 1;
-  string points_name = 2;
-  int64 amout = 3;
-  string dapp_name = 4;
-}
 
-message PointsRecordList {
-  repeated PointsRecord points_records = 1;
-}
 // Log Event
 message InviterApplied {
   option (aelf.is_event) = true;
   string domain = 1;
-  string service = 2;
+  aelf.Hash dapp_id = 2;
   aelf.Address invitee = 3;
   aelf.Address inviter = 4;
 }
 
 message PointsRecorded {
   option (aelf.is_event) = true;
-  PointsRecordList points_record_list = 1;
+  PointsRecordList points_record_list = 1; // 这一次积分进行结算的所有地址
 }
+
+message PointsRecordList {
+  repeated PointsRecord points_records = 1;
+}
+
+message PointsRecord {
+  aelf.Address pointer_address = 1;
+  string domain = 2;
+  string action_name = 3;
+  IncomeSourceType income_source_type = 4;
+  string points_name = 5;
+  int64 amount = 6;
+  aelf.Hash dapp_id = 7;
+}
+

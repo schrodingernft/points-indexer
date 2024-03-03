@@ -1,3 +1,4 @@
+using AElf;
 using AElfIndexer.Client;
 using AElfIndexer.Client.Handlers;
 using AElfIndexer.Grains.State.Client;
@@ -39,7 +40,8 @@ public class AppliedLogEventProcessor : AElfLogEventProcessorBase<InviterApplied
     {
         _logger.Debug("AppliedEvent: {eventValue} context: {context}",JsonConvert.SerializeObject(eventValue), 
             JsonConvert.SerializeObject(context));
-        var id = eventValue.Domain.ToMd5();
+        
+        var id = HashHelper.ComputeFrom(eventValue.Domain).ToHex();
         var domainIndex = await _operatorDomainRepository.GetFromBlockStateSetAsync(id, context.ChainId);
         
         if (domainIndex != null) 
@@ -53,7 +55,7 @@ public class AppliedLogEventProcessor : AElfLogEventProcessorBase<InviterApplied
             Id = id,
             Domain = eventValue.Domain,
             DepositAddress = eventValue.Invitee.ToBase58(),
-            DappName = eventValue.Service,
+            DappName = eventValue.DappId.ToHex(),
             CreateTime = context.BlockTime
         };
 
@@ -61,7 +63,7 @@ public class AppliedLogEventProcessor : AElfLogEventProcessorBase<InviterApplied
         {
             domainIndex.InviterAddress = eventValue.Inviter.ToBase58();
         }
-        
+        _objectMapper.Map(context, domainIndex);
         
         await _operatorDomainRepository.AddOrUpdateAsync(domainIndex);
     }

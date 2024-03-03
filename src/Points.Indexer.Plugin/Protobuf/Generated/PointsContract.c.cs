@@ -34,7 +34,7 @@ namespace Points.Contracts.Point {
     }
   }
 
-  internal partial class PointsUpdated : aelf::IEvent<PointsUpdated>
+  public partial class PointsUpdated : aelf::IEvent<PointsUpdated>
   {
     public global::System.Collections.Generic.IEnumerable<PointsUpdated> GetIndexed()
     {
@@ -122,14 +122,14 @@ namespace Points.Contracts.Point {
       return new InviterApplied
       {
         Domain = Domain,
-        Service = Service,
+        DappId = DappId,
         Invitee = Invitee,
         Inviter = Inviter,
       };
     }
   }
 
-  internal partial class PointsRecorded : aelf::IEvent<PointsRecorded>
+  public partial class PointsRecorded : aelf::IEvent<PointsRecorded>
   {
     public global::System.Collections.Generic.IEnumerable<PointsRecorded> GetIndexed()
     {

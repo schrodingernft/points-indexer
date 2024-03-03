@@ -1,3 +1,4 @@
+using AElf;
 using AElfIndexer.Client;
 using AElfIndexer.Grains.State.Client;
 using Points.Indexer.Plugin.Entities;
@@ -13,10 +14,11 @@ public partial class Query
     public static async Task<OperatorDomainDto> OperatorDomainInfo(
         [FromServices] IAElfIndexerClientEntityRepository<OperatorDomainIndex, LogEventInfo> repository,
         [FromServices] IObjectMapper objectMapper,
-        GetOperatorDomainDto dto)
+        GetOperatorDomainDto input)
     {
-        if (dto.Domain.IsNullOrWhiteSpace()) return null;
-        var domainIndex = await repository.GetAsync(dto.Domain.ToMd5());
+        if (input.Domain.IsNullOrWhiteSpace()) return null;
+        var id = HashHelper.ComputeFrom(input.Domain).ToHex();
+        var domainIndex = await repository.GetAsync(id);
         if (domainIndex == null) return null;
 
         return objectMapper.Map<OperatorDomainIndex, OperatorDomainDto>(domainIndex);
@@ -25,7 +27,6 @@ public partial class Query
     [Name("checkDomainApplied")]
     public static async Task<List<string>> CheckDomainApplied(
         [FromServices] IAElfIndexerClientEntityRepository<OperatorDomainIndex, LogEventInfo> repository,
-        [FromServices] IObjectMapper objectMapper,
         CheckDomainAppliedDto input)
     {
         if (input.DomainList.IsNullOrEmpty()) return null;
@@ -88,8 +89,18 @@ public partial class Query
         var mustQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumByActionIndex>, QueryContainer>>();
         
         mustQuery.Add(q => q.Term(i => i.Field(f => f.Domain).Value(input.Domain)));
-        mustQuery.Add(q => q.Term(i => i.Field(f => f.DappName).Value(input.DappName)));
         mustQuery.Add(q => q.Term(i => i.Field(f => f.Address).Value(input.Address)));
+
+        if (input.DappId != "")
+        {
+            mustQuery.Add(q => q.Term(i => i.Field(f => f.DappId).Value(input.DappId)));
+        }
+
+        if (input.Role != null)
+        {
+            mustQuery.Add(q => q.Term(i => i.Field(f => f.Role).Value(input.Role)));
+
+        }
 
         QueryContainer Filter(QueryContainerDescriptor<AddressPointsSumByActionIndex> f) =>
             f.Bool(b => b.Must(mustQuery));
