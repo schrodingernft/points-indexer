@@ -17,7 +17,7 @@ namespace Points.Indexer.Plugin.Tests.Processors;
 public class AppliedLogEventProcessorTests : PointsIndexerPluginTestBase
 {
     [Fact]
-    public async Task HandleJoinedProcessor()
+    public async Task HandleAppliedProcessor()
     {
         var context = MockLogEventContext();
         var state = await MockBlockState(context);

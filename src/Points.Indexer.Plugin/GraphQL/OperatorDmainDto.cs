@@ -10,7 +10,7 @@ public class OperatorDomainDto
     
     public string InviterAddress { get; set; }
     
-    public string DappName { get; set; }  
+    public string DappId { get; set; }  
     
     public DateTime CreateTime { get; set; }  
 }

@@ -55,7 +55,7 @@ public class AppliedLogEventProcessor : AElfLogEventProcessorBase<InviterApplied
             Id = id,
             Domain = eventValue.Domain,
             DepositAddress = eventValue.Invitee.ToBase58(),
-            DappName = eventValue.DappId.ToHex(),
+            DappId = eventValue.DappId.ToHex(),
             CreateTime = context.BlockTime
         };
 

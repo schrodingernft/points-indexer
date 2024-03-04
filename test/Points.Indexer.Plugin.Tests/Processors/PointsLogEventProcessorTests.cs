@@ -79,8 +79,8 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
         var context = MockLogEventContext();
         var state = await MockBlockState(context);
 
-        var pointsRecordList = new PointsRecordList();
-        pointsRecordList.PointsRecords.Add( new PointsRecord
+        var pointsRecordList = new PointsDetailList();
+        pointsRecordList.PointsDetails.Add( new PointsDetail
         {
             Domain = "test.dapp.io",
             PointerAddress = Address.FromBase58("xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"),
@@ -90,7 +90,7 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             ActionName = "Join",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
         });
-        pointsRecordList.PointsRecords.Add(new PointsRecord
+        pointsRecordList.PointsDetails.Add(new PointsDetail
         {
             Domain = "test.dapp.io",
             PointerAddress = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
@@ -100,7 +100,7 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             ActionName = "Increase",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
         });
-        pointsRecordList.PointsRecords.Add(new PointsRecord
+        pointsRecordList.PointsDetails.Add(new PointsDetail
         {
             Domain = "test.dapp.io",
             PointerAddress = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
@@ -111,9 +111,9 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             DappId = HashHelper.ComputeFrom("Schrodinger"),
         });
         
-        var pointsRecorded = new PointsRecorded()
+        var pointsRecorded = new PointsDetails()
         {
-            PointsRecordList = pointsRecordList
+            PointDetailList = pointsRecordList
         };
         
         var logEvent = MockLogEventInfo(pointsRecorded.ToLogEvent());

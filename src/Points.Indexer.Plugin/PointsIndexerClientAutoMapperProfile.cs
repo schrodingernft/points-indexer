@@ -17,14 +17,14 @@ public class PointsIndexerClientAutoMapperProfile : Profile
         CreateMap<AddressPointsLogIndex, AddressPointsLogDto>();
         CreateMap<LogEventContext, OperatorUserIndex>().ReverseMap();
         CreateMap<OperatorUserIndex, OperatorUserDto>().ReverseMap();
-        CreateMap<PointsRecord, AddressPointsLogIndex>().
+        CreateMap<PointsDetail, AddressPointsLogIndex>().
             ForMember(destination => destination.Address,
             opt => opt.MapFrom(source => source.PointerAddress.ToBase58())).
             ForMember(destination => destination.Role,
                 opt => opt.MapFrom(source => source.IncomeSourceType)).
             ForMember(destination => destination.DappId,
                 opt => opt.MapFrom(source => source.DappId.ToHex()));
-        CreateMap<PointsRecord, AddressPointsSumByActionIndex>().
+        CreateMap<PointsDetail, AddressPointsSumByActionIndex>().
             ForMember(destination => destination.Address,
             opt => opt.MapFrom(source => source.PointerAddress.ToBase58())).
             ForMember(destination => destination.Role,
