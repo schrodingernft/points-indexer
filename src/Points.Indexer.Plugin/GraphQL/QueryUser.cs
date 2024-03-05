@@ -14,29 +14,29 @@ public partial class Query
     public static async Task<OperatorUserPagerDto> QueryUserAsync(
         [FromServices] IAElfIndexerClientEntityRepository<OperatorUserIndex, LogEventInfo> repository,
         [FromServices] IObjectMapper objectMapper,
-        OperatorUserRequestDto dto)
+        OperatorUserRequestDto input)
     {
         var mustQuery = new List<Func<QueryContainerDescriptor<OperatorUserIndex>, QueryContainer>>();
 
-        if (!dto.DomainIn.IsNullOrEmpty())
-            mustQuery.Add(q => q.Terms(i => i.Field(f => f.Domain).Terms(dto.DomainIn)));
+        if (!input.DomainIn.IsNullOrEmpty())
+            mustQuery.Add(q => q.Terms(i => i.Field(f => f.Domain).Terms(input.DomainIn)));
 
-        if (!dto.AddressIn.IsNullOrEmpty())
-            mustQuery.Add(q => q.Terms(i => i.Field(f => f.Address).Terms(dto.AddressIn)));
+        if (!input.AddressIn.IsNullOrEmpty())
+            mustQuery.Add(q => q.Terms(i => i.Field(f => f.Address).Terms(input.AddressIn)));
 
-        if (!dto.DappNameIn.IsNullOrEmpty())
-            mustQuery.Add(q => q.Terms(i => i.Field(f => f.DappName).Terms(dto.DappNameIn)));
+        if (!input.DappNameIn.IsNullOrEmpty())
+            mustQuery.Add(q => q.Terms(i => i.Field(f => f.DappName).Terms(input.DappNameIn)));
 
-        if (dto.CreateTimeLt != null)
-            mustQuery.Add(q => q.LongRange(i => i.Field(f => f.CreateTime).LessThan(dto.CreateTimeLt)));
+        if (input.CreateTimeLt != null)
+            mustQuery.Add(q => q.LongRange(i => i.Field(f => f.CreateTime).LessThan(input.CreateTimeLt)));
 
-        if (dto.CreateTimeGtEq != null)
-            mustQuery.Add(q => q.LongRange(i => i.Field(f => f.CreateTime).GreaterThanOrEquals(dto.CreateTimeGtEq)));
+        if (input.CreateTimeGtEq != null)
+            mustQuery.Add(q => q.LongRange(i => i.Field(f => f.CreateTime).GreaterThanOrEquals(input.CreateTimeGtEq)));
 
         QueryContainer Filter(QueryContainerDescriptor<OperatorUserIndex> f) => f.Bool(b => b.Must(mustQuery));
         var (total, list) = await repository.GetListAsync(Filter,
             sortExp: s => s.CreateTime, sortType: SortOrder.Descending,
-            skip: dto.SkipCount, limit: dto.MaxResultCount);
+            skip: input.SkipCount, limit: input.MaxResultCount);
 
         var dataList = objectMapper.Map<List<OperatorUserIndex>, List<OperatorUserDto>>(list);
         return new OperatorUserPagerDto
