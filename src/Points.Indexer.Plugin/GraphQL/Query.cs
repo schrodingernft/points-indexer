@@ -16,20 +16,20 @@ public partial class Query
         [FromServices] IObjectMapper objectMapper,
         GetOperatorDomainDto input)
     {
-        if (input.Domain.IsNullOrWhiteSpace()) return null;
+        if (input.Domain.IsNullOrWhiteSpace()) return new OperatorDomainDto();
         var id = HashHelper.ComputeFrom(input.Domain).ToHex();
         var domainIndex = await repository.GetAsync(id);
-        if (domainIndex == null) return null;
+        if (domainIndex == null) return new OperatorDomainDto();
 
         return objectMapper.Map<OperatorDomainIndex, OperatorDomainDto>(domainIndex);
     }
     
     [Name("checkDomainApplied")]
-    public static async Task<List<string>> CheckDomainApplied(
+    public static async Task<DomainAppliedDto> CheckDomainApplied(
         [FromServices] IAElfIndexerClientEntityRepository<OperatorDomainIndex, LogEventInfo> repository,
         CheckDomainAppliedDto input)
     {
-        if (input.DomainList.IsNullOrEmpty()) return null;
+        if (input.DomainList.IsNullOrEmpty()) return new DomainAppliedDto();
         
         var mustQuery = new List<Func<QueryContainerDescriptor<OperatorDomainIndex>, QueryContainer>>();
         mustQuery.Add(q => q.Terms(i => i.Field(f => f.Domain)
@@ -39,7 +39,10 @@ public partial class Query
             f.Bool(b => b.Must(mustQuery));
         var domainIndexList = await repository.GetListAsync(Filter);
 
-        return domainIndexList.Item2.Select(i => i.Domain).ToList();
+        return new DomainAppliedDto()
+        {
+            DomainList = domainIndexList.Item2.Select(i => i.Domain).ToList()
+        };
     }
 
 

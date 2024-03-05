@@ -13,7 +13,6 @@ using aelf = global::AElf.CSharp.Core;
 namespace Points.Contracts.Point {
 
   #region Events
-
   public partial class Joined : aelf::IEvent<Joined>
   {
     public global::System.Collections.Generic.IEnumerable<Joined> GetIndexed()
@@ -70,7 +69,7 @@ namespace Points.Contracts.Point {
     }
   }
 
-  internal partial class DappInformationChanged : aelf::IEvent<DappInformationChanged>
+  public partial class DappInformationChanged : aelf::IEvent<DappInformationChanged>
   {
     public global::System.Collections.Generic.IEnumerable<DappInformationChanged> GetIndexed()
     {
@@ -89,7 +88,7 @@ namespace Points.Contracts.Point {
     }
   }
 
-  internal partial class SelfIncreasingPointsRulesChanged : aelf::IEvent<SelfIncreasingPointsRulesChanged>
+  public partial class SelfIncreasingPointsRulesChanged : aelf::IEvent<SelfIncreasingPointsRulesChanged>
   {
     public global::System.Collections.Generic.IEnumerable<SelfIncreasingPointsRulesChanged> GetIndexed()
     {
@@ -132,7 +131,7 @@ namespace Points.Contracts.Point {
     }
   }
 
-  internal partial class ServicesEarningRulesChanged : aelf::IEvent<ServicesEarningRulesChanged>
+  public partial class ServicesEarningRulesChanged : aelf::IEvent<ServicesEarningRulesChanged>
   {
     public global::System.Collections.Generic.IEnumerable<ServicesEarningRulesChanged> GetIndexed()
     {
@@ -151,7 +150,7 @@ namespace Points.Contracts.Point {
     }
   }
 
-  internal partial class PointCreated : aelf::IEvent<PointCreated>
+  public partial class PointCreated : aelf::IEvent<PointCreated>
   {
     public global::System.Collections.Generic.IEnumerable<PointCreated> GetIndexed()
     {
@@ -171,7 +170,7 @@ namespace Points.Contracts.Point {
   }
 
   #endregion
-  internal static partial class PointsContractContainer
+  public static partial class PointsContractContainer
   {
     static readonly string __ServiceName = "PointsContract";
 
@@ -331,25 +330,6 @@ namespace Points.Contracts.Point {
     }
     #endregion
 
-    public class PointsContractReferenceState : global::AElf.Sdk.CSharp.State.ContractReferenceState
-    {
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.InitializeInput, global::Google.Protobuf.WellKnownTypes.Empty> Initialize { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::AElf.Types.Address, global::Google.Protobuf.WellKnownTypes.Empty> SetAdmin { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Empty, global::AElf.Types.Address> GetAdmin { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.SetReservedDomainListInput, global::Google.Protobuf.WellKnownTypes.Empty> SetReservedDomainList { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Empty, global::Points.Contracts.Point.GetReservedDomainListOutput> GetReservedDomainList { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.CreatePointInput, global::Google.Protobuf.WellKnownTypes.Empty> CreatePoint { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Int32Value, global::Google.Protobuf.WellKnownTypes.Empty> SetMaxApplyCount { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.JoinInput, global::Google.Protobuf.WellKnownTypes.Empty> Join { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.GetPointsBalanceInput, global::Points.Contracts.Point.GetPointsBalanceOutput> GetPointsBalance { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.SetDappInformationInput, global::Google.Protobuf.WellKnownTypes.Empty> SetDappInformation { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.GetDappInformationInput, global::Points.Contracts.Point.GetDappInformationOutput> GetDappInformation { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.SetSelfIncreasingPointsRulesInput, global::Google.Protobuf.WellKnownTypes.Empty> SetSelfIncreasingPointsRules { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.GetSelfIncreasingPointsRuleInput, global::Points.Contracts.Point.GetSelfIncreasingPointsRuleOutput> GetSelfIncreasingPointsRule { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Points.Contracts.Point.ApplyToOperatorInput, global::Google.Protobuf.WellKnownTypes.Empty> ApplyToOperator { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.StringValue, global::Points.Contracts.Point.DomainOperatorRelationship> GetDomainApplyInfo { get; set; }
-      internal global::AElf.Sdk.CSharp.State.MethodReference<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Int32Value> GetMaxApplyCount { get; set; }
-    }
   }
 }
 #endregion

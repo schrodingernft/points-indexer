@@ -21,10 +21,12 @@ public class PointsIndexerPluginModule : AElfIndexerClientPluginBaseModule<Point
     
         serviceCollection.AddSingleton<IAElfLogEventProcessor<LogEventInfo>, AppliedLogEventProcessor>();
         serviceCollection.AddSingleton<IAElfLogEventProcessor<LogEventInfo>, JoinedLogEventProcessor>();
+        serviceCollection.AddSingleton<IAElfLogEventProcessor<LogEventInfo>, PointsRecordedLogEventProcessor>();
+        serviceCollection.AddSingleton<IAElfLogEventProcessor<LogEventInfo>, PointsUpdatedLogEventProcessor>();
         serviceCollection.AddSingleton<IBlockChainDataHandler, PointsTransactionHandler>();
         
     }
     
     protected override string ClientId => "AElfIndexer_Points";
-    protected override string Version => "588d070550b04439986f2d7a6f01eb0b";
+    protected override string Version => "017dacc6540a4d7aa6369ef1e9000314";
 }

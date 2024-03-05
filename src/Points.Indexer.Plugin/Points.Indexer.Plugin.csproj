@@ -7,8 +7,6 @@
 
     <ItemGroup>
         <PackageReference Include="AElfIndexer.Client" Version="1.0.0-28" />
-        <PackageReference Include="AElf.Sdk.CSharp" Version="1.6.0" />
-        <PackageReference Include="AElf.CSharp.Core" Version="1.6.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -16,17 +14,4 @@
       <None Remove="GraphQL\package.json" />
       <None Remove="GraphQL\http-client.env.json" />
     </ItemGroup>
-
-    <ItemGroup>
-        <ContractBase Include="..\..\protobuf\acs12.proto">
-            <Link>Protobuf\Proto\acs12.proto</Link>
-        </ContractBase>
-        <ContractReference Include="..\..\protobuf\token_contract.proto">
-            <Link>Protobuf\Proto\token_contract.proto</Link>
-        </ContractReference>
-        <ContractReference Include="..\..\protobuf\points_contract.proto">
-            <Link>Protobuf\Proto\points_contract.proto</Link>
-        </ContractReference>
-    </ItemGroup>
-    
 </Project>

@@ -504,3 +504,6 @@ namespace AElf.Standards.ACS12 {
 }
 
 #endregion Designer generated code
+
+
+

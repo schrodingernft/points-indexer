@@ -46,8 +46,8 @@ public class AppliedLogEventProcessorTests : PointsIndexerPluginTestBase
                 "test2.dapp.io"
             }
         });
-        domain.ShouldContain("test.dapp.io");
-        domain.ShouldNotContain("test2.dapp.io");
+        domain.DomainList.ShouldContain("test.dapp.io");
+        domain.DomainList.ShouldNotContain("test2.dapp.io");
 
         var info = await Query.OperatorDomainInfo(domainRepository, objectMapper, new GetOperatorDomainDto()
         {

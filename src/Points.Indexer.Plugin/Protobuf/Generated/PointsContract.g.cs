@@ -12,7 +12,7 @@ using scg = global::System.Collections.Generic;
 namespace Points.Contracts.Point {
 
   /// <summary>Holder for reflection information generated from points_contract.proto</summary>
-  internal static partial class PointsContractReflection {
+  public static partial class PointsContractReflection {
 
     #region Descriptor
     /// <summary>File descriptor for points_contract.proto</summary>
@@ -100,40 +100,38 @@ namespace Points.Contracts.Point {
             "aXRlZRgCIAEoCzINLmFlbGYuQWRkcmVzcxIeCgdpbnZpdGVyGAMgASgLMg0u",
             "YWVsZi5BZGRyZXNzIjgKEENyZWF0ZVBvaW50SW5wdXQSEgoKdG9rZW5fbmFt",
             "ZRgBIAEoCRIQCghkZWNpbWFscxgCIAEoBSI6CgxQb2ludENyZWF0ZWQSEgoK",
-            "dG9rZW5fbmFtZRgBIAEoCRIQCghkZWNpbWFscxgCIAEoBToEoLsYASJtCgxQ",
-            "b2ludHNSZWNvcmQSJgoPcG9pbnRlcl9hZGRyZXNzGAEgASgLMg0uYWVsZi5B",
-            "ZGRyZXNzEhMKC3BvaW50c19uYW1lGAIgASgJEg0KBWFtb3V0GAMgASgDEhEK",
-            "CWRhcHBfbmFtZRgEIAEoCSoyChBJbmNvbWVTb3VyY2VUeXBlEggKBFVTRVIQ",
-            "ABIHCgNLT0wQARILCgdJTlZJVEVSEAIy9AkKDlBvaW50c0NvbnRyYWN0EjgK",
-            "CkluaXRpYWxpemUSEC5Jbml0aWFsaXplSW5wdXQaFi5nb29nbGUucHJvdG9i",
-            "dWYuRW1wdHkiABIzCghTZXRBZG1pbhINLmFlbGYuQWRkcmVzcxoWLmdvb2ds",
-            "ZS5wcm90b2J1Zi5FbXB0eSIAEjgKCEdldEFkbWluEhYuZ29vZ2xlLnByb3Rv",
-            "YnVmLkVtcHR5Gg0uYWVsZi5BZGRyZXNzIgWIifcBARJOChVTZXRSZXNlcnZl",
-            "ZERvbWFpbkxpc3QSGy5TZXRSZXNlcnZlZERvbWFpbkxpc3RJbnB1dBoWLmdv",
-            "b2dsZS5wcm90b2J1Zi5FbXB0eSIAElQKFUdldFJlc2VydmVkRG9tYWluTGlz",
-            "dBIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRocLkdldFJlc2VydmVkRG9tYWlu",
-            "TGlzdE91dHB1dCIFiIn3AQESOgoLQ3JlYXRlUG9pbnQSES5DcmVhdGVQb2lu",
-            "dElucHV0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASSQoQU2V0TWF4QXBw",
-            "bHlDb3VudBIbLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlGhYuZ29vZ2xl",
-            "LnByb3RvYnVmLkVtcHR5IgASLAoESm9pbhIKLkpvaW5JbnB1dBoWLmdvb2ds",
-            "ZS5wcm90b2J1Zi5FbXB0eSIAEkoKEEdldFBvaW50c0JhbGFuY2USFi5HZXRQ",
-            "b2ludHNCYWxhbmNlSW5wdXQaFy5HZXRQb2ludHNCYWxhbmNlT3V0cHV0IgWI",
-            "ifcBARJIChJTZXREYXBwSW5mb3JtYXRpb24SGC5TZXREYXBwSW5mb3JtYXRp",
-            "b25JbnB1dBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAElAKEkdldERhcHBJ",
-            "bmZvcm1hdGlvbhIYLkdldERhcHBJbmZvcm1hdGlvbklucHV0GhkuR2V0RGFw",
-            "cEluZm9ybWF0aW9uT3V0cHV0IgWIifcBARJcChxTZXRTZWxmSW5jcmVhc2lu",
-            "Z1BvaW50c1J1bGVzEiIuU2V0U2VsZkluY3JlYXNpbmdQb2ludHNSdWxlc0lu",
-            "cHV0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASawobR2V0U2VsZkluY3Jl",
-            "YXNpbmdQb2ludHNSdWxlEiEuR2V0U2VsZkluY3JlYXNpbmdQb2ludHNSdWxl",
-            "SW5wdXQaIi5HZXRTZWxmSW5jcmVhc2luZ1BvaW50c1J1bGVPdXRwdXQiBYiJ",
-            "9wEBEkIKD0FwcGx5VG9PcGVyYXRvchIVLkFwcGx5VG9PcGVyYXRvcklucHV0",
-            "GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASVgoSR2V0RG9tYWluQXBwbHlJ",
-            "bmZvEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGhsuRG9tYWluT3Bl",
-            "cmF0b3JSZWxhdGlvbnNoaXAiBYiJ9wEBEk4KEEdldE1heEFwcGx5Q291bnQS",
-            "Fi5nb29nbGUucHJvdG9idWYuRW1wdHkaGy5nb29nbGUucHJvdG9idWYuSW50",
-            "MzJWYWx1ZSIFiIn3AQEaP8rK9gELYWNzMTIucHJvdG+yzPYBKlBvaW50cy5D",
-            "b250cmFjdHMuUG9pbnQuUG9pbnRzQ29udHJhY3RTdGF0ZUIZqgIWUG9pbnRz",
-            "LkNvbnRyYWN0cy5Qb2ludGIGcHJvdG8z"));
+            "dG9rZW5fbmFtZRgBIAEoCRIQCghkZWNpbWFscxgCIAEoBToEoLsYASoyChBJ",
+            "bmNvbWVTb3VyY2VUeXBlEggKBFVTRVIQABIHCgNLT0wQARILCgdJTlZJVEVS",
+            "EAIy9AkKDlBvaW50c0NvbnRyYWN0EjgKCkluaXRpYWxpemUSEC5Jbml0aWFs",
+            "aXplSW5wdXQaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiABIzCghTZXRBZG1p",
+            "bhINLmFlbGYuQWRkcmVzcxoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAEjgK",
+            "CEdldEFkbWluEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Gg0uYWVsZi5BZGRy",
+            "ZXNzIgWIifcBARJOChVTZXRSZXNlcnZlZERvbWFpbkxpc3QSGy5TZXRSZXNl",
+            "cnZlZERvbWFpbkxpc3RJbnB1dBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIA",
+            "ElQKFUdldFJlc2VydmVkRG9tYWluTGlzdBIWLmdvb2dsZS5wcm90b2J1Zi5F",
+            "bXB0eRocLkdldFJlc2VydmVkRG9tYWluTGlzdE91dHB1dCIFiIn3AQESOgoL",
+            "Q3JlYXRlUG9pbnQSES5DcmVhdGVQb2ludElucHV0GhYuZ29vZ2xlLnByb3Rv",
+            "YnVmLkVtcHR5IgASSQoQU2V0TWF4QXBwbHlDb3VudBIbLmdvb2dsZS5wcm90",
+            "b2J1Zi5JbnQzMlZhbHVlGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASLAoE",
+            "Sm9pbhIKLkpvaW5JbnB1dBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAEkoK",
+            "EEdldFBvaW50c0JhbGFuY2USFi5HZXRQb2ludHNCYWxhbmNlSW5wdXQaFy5H",
+            "ZXRQb2ludHNCYWxhbmNlT3V0cHV0IgWIifcBARJIChJTZXREYXBwSW5mb3Jt",
+            "YXRpb24SGC5TZXREYXBwSW5mb3JtYXRpb25JbnB1dBoWLmdvb2dsZS5wcm90",
+            "b2J1Zi5FbXB0eSIAElAKEkdldERhcHBJbmZvcm1hdGlvbhIYLkdldERhcHBJ",
+            "bmZvcm1hdGlvbklucHV0GhkuR2V0RGFwcEluZm9ybWF0aW9uT3V0cHV0IgWI",
+            "ifcBARJcChxTZXRTZWxmSW5jcmVhc2luZ1BvaW50c1J1bGVzEiIuU2V0U2Vs",
+            "ZkluY3JlYXNpbmdQb2ludHNSdWxlc0lucHV0GhYuZ29vZ2xlLnByb3RvYnVm",
+            "LkVtcHR5IgASawobR2V0U2VsZkluY3JlYXNpbmdQb2ludHNSdWxlEiEuR2V0",
+            "U2VsZkluY3JlYXNpbmdQb2ludHNSdWxlSW5wdXQaIi5HZXRTZWxmSW5jcmVh",
+            "c2luZ1BvaW50c1J1bGVPdXRwdXQiBYiJ9wEBEkIKD0FwcGx5VG9PcGVyYXRv",
+            "chIVLkFwcGx5VG9PcGVyYXRvcklucHV0GhYuZ29vZ2xlLnByb3RvYnVmLkVt",
+            "cHR5IgASVgoSR2V0RG9tYWluQXBwbHlJbmZvEhwuZ29vZ2xlLnByb3RvYnVm",
+            "LlN0cmluZ1ZhbHVlGhsuRG9tYWluT3BlcmF0b3JSZWxhdGlvbnNoaXAiBYiJ",
+            "9wEBEk4KEEdldE1heEFwcGx5Q291bnQSFi5nb29nbGUucHJvdG9idWYuRW1w",
+            "dHkaGy5nb29nbGUucHJvdG9idWYuSW50MzJWYWx1ZSIFiIn3AQEaP8rK9gEL",
+            "YWNzMTIucHJvdG+yzPYBKlBvaW50cy5Db250cmFjdHMuUG9pbnQuUG9pbnRz",
+            "Q29udHJhY3RTdGF0ZUIZqgIWUG9pbnRzLkNvbnRyYWN0cy5Qb2ludGIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::AElf.Types.CoreReflection.Descriptor, global::AElf.OptionsReflection.Descriptor, global::AElf.Standards.ACS12.Acs12Reflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Points.Contracts.Point.IncomeSourceType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -171,15 +169,13 @@ namespace Points.Contracts.Point {
             new pbr::GeneratedClrTypeInfo(typeof(global::Points.Contracts.Point.ReservedDomainList), global::Points.Contracts.Point.ReservedDomainList.Parser, new[]{ "Domains" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Points.Contracts.Point.DomainOperatorRelationship), global::Points.Contracts.Point.DomainOperatorRelationship.Parser, new[]{ "Domain", "Invitee", "Inviter" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Points.Contracts.Point.CreatePointInput), global::Points.Contracts.Point.CreatePointInput.Parser, new[]{ "TokenName", "Decimals" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Points.Contracts.Point.PointCreated), global::Points.Contracts.Point.PointCreated.Parser, new[]{ "TokenName", "Decimals" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Points.Contracts.Point.PointsRecord), global::Points.Contracts.Point.PointsRecord.Parser, new[]{ "PointerAddress", "PointsName", "Amout", "DappName" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Points.Contracts.Point.PointCreated), global::Points.Contracts.Point.PointCreated.Parser, new[]{ "TokenName", "Decimals" }, null, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Enums
-
   public enum IncomeSourceType {
     [pbr::OriginalName("USER")] User = 0,
     [pbr::OriginalName("KOL")] Kol = 1,
@@ -192,7 +188,7 @@ namespace Points.Contracts.Point {
   /// <summary>
   /// NEW
   /// </summary>
-  internal sealed partial class InitializeInput : pb::IMessage<InitializeInput>
+  public sealed partial class InitializeInput : pb::IMessage<InitializeInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -390,7 +386,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class JoinInput : pb::IMessage<JoinInput>
+  public sealed partial class JoinInput : pb::IMessage<JoinInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -955,7 +951,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class DappInfo : pb::IMessage<DappInfo>
+  public sealed partial class DappInfo : pb::IMessage<DappInfo>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -1236,7 +1232,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class PointsRuleList : pb::IMessage<PointsRuleList>
+  public sealed partial class PointsRuleList : pb::IMessage<PointsRuleList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -1414,7 +1410,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class PointsRule : pb::IMessage<PointsRule>
+  public sealed partial class PointsRule : pb::IMessage<PointsRule>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -3278,7 +3274,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class SettleInput : pb::IMessage<SettleInput>
+  public sealed partial class SettleInput : pb::IMessage<SettleInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -3559,7 +3555,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class GetPointsBalanceInput : pb::IMessage<GetPointsBalanceInput>
+  public sealed partial class GetPointsBalanceInput : pb::IMessage<GetPointsBalanceInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -3914,7 +3910,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class GetPointsBalanceOutput : pb::IMessage<GetPointsBalanceOutput>
+  public sealed partial class GetPointsBalanceOutput : pb::IMessage<GetPointsBalanceOutput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4232,7 +4228,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class SetDappInformationInput : pb::IMessage<SetDappInformationInput>
+  public sealed partial class SetDappInformationInput : pb::IMessage<SetDappInformationInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4559,7 +4555,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class DappInformationChanged : pb::IMessage<DappInformationChanged>
+  public sealed partial class DappInformationChanged : pb::IMessage<DappInformationChanged>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -4803,7 +4799,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class GetDappInformationInput : pb::IMessage<GetDappInformationInput>
+  public sealed partial class GetDappInformationInput : pb::IMessage<GetDappInformationInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5001,7 +4997,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class GetDappInformationOutput : pb::IMessage<GetDappInformationOutput>
+  public sealed partial class GetDappInformationOutput : pb::IMessage<GetDappInformationOutput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5199,7 +5195,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class SetSelfIncreasingPointsRulesInput : pb::IMessage<SetSelfIncreasingPointsRulesInput>
+  public sealed partial class SetSelfIncreasingPointsRulesInput : pb::IMessage<SetSelfIncreasingPointsRulesInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5443,7 +5439,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class SelfIncreasingPointsRulesChanged : pb::IMessage<SelfIncreasingPointsRulesChanged>
+  public sealed partial class SelfIncreasingPointsRulesChanged : pb::IMessage<SelfIncreasingPointsRulesChanged>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5789,7 +5785,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class GetSelfIncreasingPointsRuleInput : pb::IMessage<GetSelfIncreasingPointsRuleInput>
+  public sealed partial class GetSelfIncreasingPointsRuleInput : pb::IMessage<GetSelfIncreasingPointsRuleInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -5987,7 +5983,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class GetSelfIncreasingPointsRuleOutput : pb::IMessage<GetSelfIncreasingPointsRuleOutput>
+  public sealed partial class GetSelfIncreasingPointsRuleOutput : pb::IMessage<GetSelfIncreasingPointsRuleOutput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6185,7 +6181,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class ApplyToOperatorInput : pb::IMessage<ApplyToOperatorInput>
+  public sealed partial class ApplyToOperatorInput : pb::IMessage<ApplyToOperatorInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -6793,7 +6789,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class ServicesEarningRulesChanged : pb::IMessage<ServicesEarningRulesChanged>
+  public sealed partial class ServicesEarningRulesChanged : pb::IMessage<ServicesEarningRulesChanged>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7028,7 +7024,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class EarningRuleList : pb::IMessage<EarningRuleList>
+  public sealed partial class EarningRuleList : pb::IMessage<EarningRuleList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7206,7 +7202,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class EarningRule : pb::IMessage<EarningRule>
+  public sealed partial class EarningRule : pb::IMessage<EarningRule>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7543,7 +7539,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class PointInfo : pb::IMessage<PointInfo>
+  public sealed partial class PointInfo : pb::IMessage<PointInfo>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7769,7 +7765,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class SetReservedDomainListInput : pb::IMessage<SetReservedDomainListInput>
+  public sealed partial class SetReservedDomainListInput : pb::IMessage<SetReservedDomainListInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -7967,7 +7963,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class GetReservedDomainListOutput : pb::IMessage<GetReservedDomainListOutput>
+  public sealed partial class GetReservedDomainListOutput : pb::IMessage<GetReservedDomainListOutput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8165,7 +8161,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class ReservedDomainList : pb::IMessage<ReservedDomainList>
+  public sealed partial class ReservedDomainList : pb::IMessage<ReservedDomainList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8343,7 +8339,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class DomainOperatorRelationship : pb::IMessage<DomainOperatorRelationship>
+  public sealed partial class DomainOperatorRelationship : pb::IMessage<DomainOperatorRelationship>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8624,7 +8620,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class CreatePointInput : pb::IMessage<CreatePointInput>
+  public sealed partial class CreatePointInput : pb::IMessage<CreatePointInput>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -8850,7 +8846,7 @@ namespace Points.Contracts.Point {
 
   }
 
-  internal sealed partial class PointCreated : pb::IMessage<PointCreated>
+  public sealed partial class PointCreated : pb::IMessage<PointCreated>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
@@ -9067,315 +9063,6 @@ namespace Points.Contracts.Point {
           }
           case 16: {
             Decimals = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  internal sealed partial class PointsRecord : pb::IMessage<PointsRecord>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<PointsRecord> _parser = new pb::MessageParser<PointsRecord>(() => new PointsRecord());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<PointsRecord> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Points.Contracts.Point.PointsContractReflection.Descriptor.MessageTypes[35]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PointsRecord() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PointsRecord(PointsRecord other) : this() {
-      pointerAddress_ = other.pointerAddress_ != null ? other.pointerAddress_.Clone() : null;
-      pointsName_ = other.pointsName_;
-      amout_ = other.amout_;
-      dappName_ = other.dappName_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PointsRecord Clone() {
-      return new PointsRecord(this);
-    }
-
-    /// <summary>Field number for the "pointer_address" field.</summary>
-    public const int PointerAddressFieldNumber = 1;
-    private global::AElf.Types.Address pointerAddress_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::AElf.Types.Address PointerAddress {
-      get { return pointerAddress_; }
-      set {
-        pointerAddress_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "points_name" field.</summary>
-    public const int PointsNameFieldNumber = 2;
-    private string pointsName_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string PointsName {
-      get { return pointsName_; }
-      set {
-        pointsName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "amout" field.</summary>
-    public const int AmoutFieldNumber = 3;
-    private long amout_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Amout {
-      get { return amout_; }
-      set {
-        amout_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "dapp_name" field.</summary>
-    public const int DappNameFieldNumber = 4;
-    private string dappName_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string DappName {
-      get { return dappName_; }
-      set {
-        dappName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as PointsRecord);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(PointsRecord other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(PointerAddress, other.PointerAddress)) return false;
-      if (PointsName != other.PointsName) return false;
-      if (Amout != other.Amout) return false;
-      if (DappName != other.DappName) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (pointerAddress_ != null) hash ^= PointerAddress.GetHashCode();
-      if (PointsName.Length != 0) hash ^= PointsName.GetHashCode();
-      if (Amout != 0L) hash ^= Amout.GetHashCode();
-      if (DappName.Length != 0) hash ^= DappName.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (pointerAddress_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(PointerAddress);
-      }
-      if (PointsName.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(PointsName);
-      }
-      if (Amout != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(Amout);
-      }
-      if (DappName.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(DappName);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (pointerAddress_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(PointerAddress);
-      }
-      if (PointsName.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(PointsName);
-      }
-      if (Amout != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(Amout);
-      }
-      if (DappName.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(DappName);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (pointerAddress_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PointerAddress);
-      }
-      if (PointsName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(PointsName);
-      }
-      if (Amout != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Amout);
-      }
-      if (DappName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(DappName);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(PointsRecord other) {
-      if (other == null) {
-        return;
-      }
-      if (other.pointerAddress_ != null) {
-        if (pointerAddress_ == null) {
-          PointerAddress = new global::AElf.Types.Address();
-        }
-        PointerAddress.MergeFrom(other.PointerAddress);
-      }
-      if (other.PointsName.Length != 0) {
-        PointsName = other.PointsName;
-      }
-      if (other.Amout != 0L) {
-        Amout = other.Amout;
-      }
-      if (other.DappName.Length != 0) {
-        DappName = other.DappName;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (pointerAddress_ == null) {
-              PointerAddress = new global::AElf.Types.Address();
-            }
-            input.ReadMessage(PointerAddress);
-            break;
-          }
-          case 18: {
-            PointsName = input.ReadString();
-            break;
-          }
-          case 24: {
-            Amout = input.ReadInt64();
-            break;
-          }
-          case 34: {
-            DappName = input.ReadString();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (pointerAddress_ == null) {
-              PointerAddress = new global::AElf.Types.Address();
-            }
-            input.ReadMessage(PointerAddress);
-            break;
-          }
-          case 18: {
-            PointsName = input.ReadString();
-            break;
-          }
-          case 24: {
-            Amout = input.ReadInt64();
-            break;
-          }
-          case 34: {
-            DappName = input.ReadString();
             break;
           }
         }
