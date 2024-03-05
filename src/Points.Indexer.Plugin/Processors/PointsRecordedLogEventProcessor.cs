@@ -47,7 +47,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsD
         foreach (var pointsRecord in eventValue.PointDetailList.PointsDetails)
         {
             var rawLogIndexId = IdGenerateHelper.GetId(context.TransactionId, pointsRecord.DappId.ToHex(),
-                pointsRecord.PointerAddress.ToBase58(), pointsRecord.IncomeSourceType);
+                pointsRecord.PointerAddress.ToBase58(), pointsRecord.IncomeSourceType, pointsRecord.ActionName, pointsRecord.PointsName);
             var pointsLogIndexId = HashHelper.ComputeFrom(rawLogIndexId).ToHex();
             var pointsLogIndex = await _addressPointsLogIndexRepository.GetFromBlockStateSetAsync(pointsLogIndexId, context.ChainId);
             if (pointsLogIndex != null)
