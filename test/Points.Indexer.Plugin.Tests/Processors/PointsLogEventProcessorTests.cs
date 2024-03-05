@@ -79,41 +79,44 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
         var context = MockLogEventContext();
         var state = await MockBlockState(context);
 
-        var pointsRecordList = new PointsDetailList();
-        pointsRecordList.PointsDetails.Add( new PointsDetail
+        var pointsRecordList = new PointsChangedDetails();
+        pointsRecordList.PointsDetails.Add( new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            PointerAddress = Address.FromBase58("xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"),
+            PointsReceiver = Address.FromBase58("xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"),
             IncomeSourceType = IncomeSourceType.Inviter,
             PointsName = "TEST-1",
-            Amount = 10000000,
+            IncreaseAmount = 100000,
             ActionName = "Join",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
+            Balance = 40000000
         });
-        pointsRecordList.PointsDetails.Add(new PointsDetail
+        pointsRecordList.PointsDetails.Add(new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            PointerAddress = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
+            PointsReceiver = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
             IncomeSourceType = IncomeSourceType.Kol,
             PointsName = "TEST-2",
-            Amount = 20000000,
+            IncreaseAmount = 200000,
             ActionName = "Increase",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
+            Balance = 50000000
         });
-        pointsRecordList.PointsDetails.Add(new PointsDetail
+        pointsRecordList.PointsDetails.Add(new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            PointerAddress = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
+            PointsReceiver = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
             IncomeSourceType = IncomeSourceType.Inviter,
             PointsName = "TEST-6",
-            Amount = 40000000,
+            IncreaseAmount = 400000,
             ActionName = "Mint",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
+            Balance = 60000000
         });
         
-        var pointsRecorded = new PointsDetails()
+        var pointsRecorded = new PointsChanged()
         {
-            PointDetailList = pointsRecordList
+            PointsChangedDetails = pointsRecordList
         };
         
         var logEvent = MockLogEventInfo(pointsRecorded.ToLogEvent());
@@ -121,6 +124,8 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
         var recordedProcessor = GetRequiredService<PointsRecordedLogEventProcessor>();
         var actionIndexRepository = GetRequiredService<IAElfIndexerClientEntityRepository<AddressPointsSumByActionIndex, LogEventInfo>>();
         var logIndexRepository = GetRequiredService<IAElfIndexerClientEntityRepository<AddressPointsLogIndex, LogEventInfo>>();
+        var symbolIndexRepository = GetRequiredService<IAElfIndexerClientEntityRepository<AddressPointsSumBySymbolIndex, LogEventInfo>>();
+
         var objectMapper = GetRequiredService<IObjectMapper>();
 
         await recordedProcessor.HandleEventAsync(logEvent, context);
@@ -155,5 +160,83 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
                 Role = IncomeSourceType.Kol
             });
         addressLog.TotalRecordCount.ShouldBe(1);
+        
+        
+        var pointsSumBySymbol = await Query.GetPointsSumBySymbol(symbolIndexRepository, objectMapper,
+            new GetPointsSumBySymbolDto()
+            {
+                StartTime = DateTime.Now.AddHours(-1),
+                EndTime = DateTime.Now.AddHours(1)
+            });
+        pointsSumBySymbol.TotalRecordCount.ShouldBe(2);
     }
 }
+
+
+
+// curl 'http://172.31.11.5:8113/AElfIndexer_Points/PointsIndexerPluginSchema/graphql' \
+// -H 'content-type: application/json' \
+// --data-raw '{"query":"query{operatorDomainInfo(input:{domain:\"hope.wang.com\"}){domain, depositAddress, inviterAddress, dappId, createTime}}"}' \
+// --compressed
+//
+//
+// curl 'http://172.31.11.5:8113/AElfIndexer_Points/PointsIndexerPluginSchema/graphql' \
+// -H 'content-type: application/json' \
+// --data-raw '{"query":"query{checkDomainApplied(input:{domainList:[\"hope.wang.com\",\"xxxx\"]}){domainList}}"}' \
+// --compressed
+//
+//
+// curl 'http://172.31.11.5:8113/AElfIndexer_Points/PointsIndexerPluginSchema/graphql' \
+// -H 'content-type: application/json' \
+// --data-raw '{"query":"query{getPointsSumBySymbol(input:{startTime:\"2024-03-04T00:00:00\",endTime:\"2024-03-06T00:00:00\", skipCount:0, maxResultCount:100}){totalRecordCount, data{domain, firstSymbolAmount}}}"}' \
+// --compressed
+//
+//
+// curl 'http://172.31.11.5:8113/AElfIndexer_Points/PointsIndexerPluginSchema/graphql' \
+// -H 'content-type: application/json' \
+// --data-raw '{"query":"query{getPointsSumByAction(input:{dappId:\"5bb8592717834522278d11805dac3f042df1bcf02cdce461968daf2e1b543172\",address:\"23GxsoW9TRpLqX1Z5tjrmcRMMSn5bhtLAf4HtPj8JX9BerqTqp\",role:\"USER\"domain:\"hope.wang.com\"}){totalRecordCount, data{role}}}"}' \
+// --compressed
+//
+//
+//
+//
+// curl --location --request GET 'http://172.31.46.30:9200/aelfindexer_points-017dacc6540a4d7aa6369ef1e9000314.operatoruserindex/_search' \
+// --header 'Content-Type: application/json' \
+// --data '{
+// "query": {
+// "match_all": {}
+// },
+// "size":100
+// }
+// '
+//
+// curl --location --request GET 'http://172.31.46.30:9200/aelfindexer_points-017dacc6540a4d7aa6369ef1e9000314.addresspointslogindex/_search' \
+// --header 'Content-Type: application/json' \
+// --data '{
+// "query": {
+//     "match_all": {}
+// },
+// "size":100
+// }
+// '
+//
+// curl --location --request GET 'http://172.31.46.30:9200/aelfindexer_points-017dacc6540a4d7aa6369ef1e9000314.addresspointssumbyactionindex/_search' \
+// --header 'Content-Type: application/json' \
+// --data '{
+// "query": {
+//     "match_all": {}
+// },
+// "size":100
+// }
+// '
+//
+//
+// curl --location --request GET 'http://172.31.46.30:9200/aelfindexer_points-017dacc6540a4d7aa6369ef1e9000314.addresspointssumbysymbolindex/_search' \
+// --header 'Content-Type: application/json' \
+// --data '{
+// "query": {
+//     "match_all": {}
+// },
+// "size":100
+// }
+// '
