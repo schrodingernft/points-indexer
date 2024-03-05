@@ -90,13 +90,20 @@ public partial class Query
     {
 
         var mustQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumByActionIndex>, QueryContainer>>();
-        
-        mustQuery.Add(q => q.Term(i => i.Field(f => f.Domain).Value(input.Domain)));
-        mustQuery.Add(q => q.Term(i => i.Field(f => f.Address).Value(input.Address)));
 
         if (input.DappId != "")
         {
             mustQuery.Add(q => q.Term(i => i.Field(f => f.DappId).Value(input.DappId)));
+        }
+        
+        if (input.Address != "")
+        {
+            mustQuery.Add(q => q.Term(i => i.Field(f => f.Address).Value(input.Address)));
+        }
+        
+        if (input.Domain != "")
+        {
+            mustQuery.Add(q => q.Term(i => i.Field(f => f.Domain).Value(input.Domain)));
         }
 
         if (input.Role != null)

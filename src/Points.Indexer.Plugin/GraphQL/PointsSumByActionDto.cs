@@ -10,9 +10,9 @@ public class PointsSumByActionDto
     public string Domain { get; set; }
     public IncomeSourceType Role { get; set; }
     public string DappId { get; set; }
+    public string ActionName { get; set; } 
+    public long Amount { get; set; }
     public string PointsName { get; set; } 
-    public decimal Amount { get; set; }
-    public string SymbolName { get; set; }  
 
     public DateTime CreateTime { get; set; }
     public DateTime UpdateTime { get; set; }

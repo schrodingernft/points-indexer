@@ -11,7 +11,7 @@ public class AddressPointsLogDto
     public IncomeSourceType Role { get; set; }
     public string DappId { get; set; }
     public string ActionName { get; set; } 
-    public decimal Amount { get; set; }
+    public long Amount { get; set; }
     public string PointsName { get; set; }  
 
     public DateTime CreateTime { get; set; }
