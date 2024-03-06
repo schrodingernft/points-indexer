@@ -38,7 +38,9 @@ public class PointsIndexerClientAutoMapperProfile : Profile
             ForMember(destination => destination.Address,
                 opt => opt.MapFrom(source => source.PointsReceiver.ToBase58())).
             ForMember(destination => destination.Role,
-                opt => opt.MapFrom(source => source.IncomeSourceType));
+                opt => opt.MapFrom(source => source.IncomeSourceType)).
+            ForMember(destination => destination.DappId,
+                opt => opt.MapFrom(source => source.DappId.ToHex()));;
         CreateMap<LogEventContext, OperatorDomainIndex>().ReverseMap();
         CreateMap<LogEventContext, AddressPointsSumBySymbolIndex>().ReverseMap();
         CreateMap<LogEventContext, AddressPointsSumByActionIndex>().ReverseMap();

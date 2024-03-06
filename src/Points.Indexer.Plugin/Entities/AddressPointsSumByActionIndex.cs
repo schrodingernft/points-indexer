@@ -9,12 +9,12 @@ public class AddressPointsSumByActionIndex : AElfIndexerClientEntity<string>, II
 {
     [Keyword] public override string Id { get; set; }
     [Keyword] public string Address { get; set; }
-    public string Domain { get; set; }
+    [Keyword] public string Domain { get; set; }
     public IncomeSourceType Role { get; set; }
-    public string DappId { get; set; }
-    public string ActionName { get; set; } 
+    [Keyword] public string DappId { get; set; }
+    [Keyword] public string ActionName { get; set; } 
     public long Amount { get; set; }
-    public string PointsName { get; set; }  
+    [Keyword] public string PointsName { get; set; }  
 
     public DateTime CreateTime { get; set; }
     public DateTime UpdateTime { get; set; }
