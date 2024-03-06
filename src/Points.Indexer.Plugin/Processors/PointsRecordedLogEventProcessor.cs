@@ -80,8 +80,8 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
                 pointsActionIndex.Id = pointsActionIndexId;
                 pointsActionIndex.Amount = pointsDetail.IncreaseAmount;
                 pointsActionIndex.CreateTime = context.BlockTime;
-                _objectMapper.Map(context, pointsActionIndex);
             }
+            _objectMapper.Map(context, pointsActionIndex);
             pointsActionIndex.UpdateTime = context.BlockTime;
             await _addressPointsSumByActionIndexRepository.AddOrUpdateAsync(pointsActionIndex);
             
@@ -96,7 +96,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
                 {
                     continue;
                 }
-
+                _objectMapper.Map(context, pointsIndex);
                 var needUpdated = UpdatePoint(pointsDetail, pointsIndex, out var newIndex);
                 if (!needUpdated)
                 {

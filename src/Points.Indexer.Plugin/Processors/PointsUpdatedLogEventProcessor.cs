@@ -52,7 +52,7 @@ public class PointsUpdatedLogEventProcessor : AElfLogEventProcessorBase<PointsUp
                 {
                     return;
                 }
-
+                _objectMapper.Map(context, pointsIndex);
                 var hasUpdate = UpdatePoint(pointsState, pointsIndex, out var newIndex);
                 if (!hasUpdate)
                 {
