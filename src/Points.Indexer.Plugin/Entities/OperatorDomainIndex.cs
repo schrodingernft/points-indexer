@@ -14,7 +14,7 @@ public class OperatorDomainIndex : AElfIndexerClientEntity<string>, IIndexBuild
     
     [Keyword] public string InviterAddress { get; set; }
     
-    public string DappId { get; set; }  
+    [Keyword] public string DappId { get; set; }  
     
     public DateTime CreateTime { get; set; }  
 }
