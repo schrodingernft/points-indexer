@@ -9,6 +9,7 @@ public class PointsSumBySymbolDto
     public string Address { get; set; }
     public string Domain { get; set; }
     public IncomeSourceType Role { get; set; }
+    public string DappId { get; set; }
     public long FirstSymbolAmount { get; set; } 
     public long SecondSymbolAmount { get; set; }
     public long ThirdSymbolAmount { get; set; } 
