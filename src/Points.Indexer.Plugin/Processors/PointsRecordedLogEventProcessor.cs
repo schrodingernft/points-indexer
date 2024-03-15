@@ -141,27 +141,27 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
         }
         else if (symbol.EndsWith("-4"))
         {
-            newIndex.ThirdSymbolAmount = amount;
+            newIndex.FourSymbolAmount = amount;
         }
         else if (symbol.EndsWith("-5"))
         {
-            newIndex.ThirdSymbolAmount = amount;
+            newIndex.FiveSymbolAmount = amount;
         }
         else if (symbol.EndsWith("-6"))
         {
-            newIndex.ThirdSymbolAmount = amount;
+            newIndex.SixSymbolAmount = amount;
         }
         else if (symbol.EndsWith("-7"))
         {
-            newIndex.ThirdSymbolAmount = amount;
+            newIndex.SevenSymbolAmount = amount;
         }
         else if (symbol.EndsWith("-8"))
         {
-            newIndex.ThirdSymbolAmount = amount;
+            newIndex.EightSymbolAmount = amount;
         }
         else if (symbol.EndsWith("-9"))
         {
-            newIndex.ThirdSymbolAmount = amount;
+            newIndex.NineSymbolAmount = amount;
         }
         else
         {
