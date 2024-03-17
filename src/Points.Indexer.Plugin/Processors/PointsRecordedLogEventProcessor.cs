@@ -44,7 +44,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
     
     protected override async Task HandleEventAsync(PointsChanged eventValue, LogEventContext context)
     {
-        _logger.Info("PointsRecorded: {eventValue} context: {context}",JsonConvert.SerializeObject(eventValue), 
+        _logger.Debug("PointsRecorded: {eventValue} context: {context}",JsonConvert.SerializeObject(eventValue), 
             JsonConvert.SerializeObject(context));
 
         foreach (var pointsDetail in eventValue.PointsChangedDetails.PointsDetails)
