@@ -72,7 +72,8 @@ public partial class Query
         QueryContainer Filter(QueryContainerDescriptor<AddressPointsSumBySymbolIndex> f) =>
             f.Bool(b => b.Must(mustQuery));
 
-        var recordList = await repository.GetListAsync(Filter, skip: input.SkipCount, limit: input.MaxResultCount);
+        var recordList = await repository.GetListAsync(Filter, skip: input.SkipCount, limit: input.MaxResultCount,
+            sortType: SortOrder.Descending, sortExp: o => o.UpdateTime);
 
         var dataList = objectMapper.Map<List<AddressPointsSumBySymbolIndex>, List<PointsSumBySymbolDto>>(recordList.Item2);
         return new PointsSumBySymbolDtoList
