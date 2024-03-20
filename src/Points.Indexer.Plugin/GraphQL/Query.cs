@@ -73,7 +73,7 @@ public partial class Query
             f.Bool(b => b.Must(mustQuery));
 
         var recordList = await repository.GetListAsync(Filter, skip: input.SkipCount, limit: input.MaxResultCount,
-            sortType: SortOrder.Descending, sortExp: o => o.UpdateTime);
+            sortType: SortOrder.Ascending, sortExp: o => o.UpdateTime);
 
         var dataList = objectMapper.Map<List<AddressPointsSumBySymbolIndex>, List<PointsSumBySymbolDto>>(recordList.Item2);
         return new PointsSumBySymbolDtoList
