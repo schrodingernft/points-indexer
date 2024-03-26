@@ -174,4 +174,75 @@ public partial class Query
             TotalRecordCount = recordList.Item1
         };
     }
+    
+    
+    [Name("getUserReferralRecords")]
+    public static async Task<UserReferralRecordDtoList> GetUserReferralRecords(
+        [FromServices] IAElfIndexerClientEntityRepository<UserReferralRecordIndex, LogEventInfo> repository,
+        [FromServices] IObjectMapper objectMapper,
+        GetUserReferralRecordsDto dto)
+    {
+
+        if (dto.ReferrerList.IsNullOrEmpty())
+        {
+            return new UserReferralRecordDtoList
+            {
+                TotalRecordCount = 0,
+                Data = new List<UserReferralRecordsDto>()
+            };
+        }
+        
+        var mustQuery = new List<Func<QueryContainerDescriptor<UserReferralRecordIndex>, QueryContainer>>();
+        
+        mustQuery.Add(q => q.Terms(i => i.Field(f => f.Referrer).Terms(dto.ReferrerList)));
+       
+        QueryContainer Filter(QueryContainerDescriptor<UserReferralRecordIndex> f) =>
+            f.Bool(b => b.Must(mustQuery));
+
+        var recordList = await repository.GetListAsync(Filter, skip: dto.SkipCount, limit: dto.MaxResultCount,
+            sortType: SortOrder.Ascending, sortExp: o => o.CreateTime);
+        
+        var dataList = objectMapper.Map<List<UserReferralRecordIndex>, List<UserReferralRecordsDto>>(recordList.Item2);
+        return new UserReferralRecordDtoList
+        {
+            Data = dataList,
+            TotalRecordCount = recordList.Item1
+        };
+    }
+    
+    
+    [Name("getUserReferralCounts")]
+    public static async Task<UserReferralCountDtoList> GetUserReferralCounts(
+        [FromServices] IAElfIndexerClientEntityRepository<UserReferralCountIndex, LogEventInfo> repository,
+        [FromServices] IObjectMapper objectMapper,
+        GetUserReferralCountsDto dto)
+    {
+
+        if (dto.ReferrerList.IsNullOrEmpty())
+        {
+            return new UserReferralCountDtoList
+            {
+                TotalRecordCount = 0,
+                Data = new List<UserReferralCountsDto>()
+            };
+        }
+        
+        var mustQuery = new List<Func<QueryContainerDescriptor<UserReferralCountIndex>, QueryContainer>>();
+        
+        mustQuery.Add(q => q.Terms(i => i.Field(f => f.Referrer).Terms(dto.ReferrerList)));
+       
+        QueryContainer Filter(QueryContainerDescriptor<UserReferralCountIndex> f) =>
+            f.Bool(b => b.Must(mustQuery));
+
+        var recordList = await repository.GetListAsync(Filter, skip: dto.SkipCount, limit: dto.MaxResultCount,
+            sortType: SortOrder.Ascending, sortExp: o => o.CreateTime);
+        
+        var dataList = objectMapper.Map<List<UserReferralCountIndex>, List<UserReferralCountsDto>>(recordList.Item2);
+        return new UserReferralCountDtoList
+        {
+            Data = dataList,
+            TotalRecordCount = recordList.Item1
+        };
+    }
+    
 }

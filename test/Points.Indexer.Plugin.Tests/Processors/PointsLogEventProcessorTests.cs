@@ -23,40 +23,40 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
         var context = MockLogEventContext();
         var state = await MockBlockState(context);
 
-        var pointsStateList = new PointsStateList();
-        pointsStateList.PointStates.Add( new PointsState
+        var pointsDetailList = new PointsChangedDetails();
+        pointsDetailList.PointsDetails.Add( new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            Address = Address.FromBase58("xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"),
+            PointsReceiver = Address.FromBase58("xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"),
             IncomeSourceType = IncomeSourceType.Inviter,
-            PointName = "TEST-1",
+            PointsName = "TEST-1",
             Balance = 10000000
         });
-        pointsStateList.PointStates.Add(new PointsState
+        pointsDetailList.PointsDetails.Add(new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            Address = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
+            PointsReceiver = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
             IncomeSourceType = IncomeSourceType.Kol,
-            PointName = "TEST-2",
+            PointsName = "TEST-2",
             Balance = 20000000
         });
-        pointsStateList.PointStates.Add(new PointsState
+        pointsDetailList.PointsDetails.Add(new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            Address = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
+            PointsReceiver = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
             IncomeSourceType = IncomeSourceType.Inviter,
-            PointName = "TEST-6",
+            PointsName = "TEST-6",
             Balance = 40000000
         });
         
-        var pointsUpdated = new PointsUpdated()
+        var pointsUpdated = new PointsChanged()
         {
-            PointStateList = pointsStateList
+            PointsChangedDetails = pointsDetailList
         };
         
         var logEvent = MockLogEventInfo(pointsUpdated.ToLogEvent());
         
-        var updatedProcessor = GetRequiredService<PointsUpdatedLogEventProcessor>();
+        var updatedProcessor = GetRequiredService<PointsRecordedLogEventProcessor>();
         var symbolIndexRepository = GetRequiredService<IAElfIndexerClientEntityRepository<AddressPointsSumBySymbolIndex, LogEventInfo>>();
         var objectMapper = GetRequiredService<IObjectMapper>();
 

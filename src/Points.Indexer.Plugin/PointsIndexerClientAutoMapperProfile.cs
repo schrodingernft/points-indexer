@@ -46,5 +46,10 @@ public class PointsIndexerClientAutoMapperProfile : Profile
         CreateMap<LogEventContext, AddressPointsSumByActionIndex>().ReverseMap();
         CreateMap<LogEventContext, AddressPointsLogIndex>().ReverseMap();
         CreateMap<LogEventContext, OperatorDomainIndex>().ReverseMap();
+        
+        CreateMap<LogEventContext, UserReferralRecordIndex>().ReverseMap();
+        CreateMap<LogEventContext, UserReferralCountIndex>().ReverseMap();
+        CreateMap<UserReferralRecordIndex, UserReferralRecordsDto>().ReverseMap();
+        CreateMap<UserReferralCountIndex, UserReferralCountsDto>().ReverseMap();
     }
 }
