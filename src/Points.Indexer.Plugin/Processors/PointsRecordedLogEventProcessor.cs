@@ -1,3 +1,4 @@
+using System.Numerics;
 using AElf;
 using AElfIndexer.Client;
 using AElfIndexer.Client.Handlers;
@@ -60,6 +61,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
             }
 
             pointsLogIndex = _objectMapper.Map<PointsChangedDetail, AddressPointsLogIndex>(pointsDetail);
+            pointsLogIndex.Amount = pointsDetail.IncreaseValue != null ?pointsDetail.IncreaseValue.ToString() : "0";
             pointsLogIndex.Id = pointsLogIndexId;
             pointsLogIndex.CreateTime = context.BlockTime;
             _objectMapper.Map(context, pointsLogIndex);
@@ -72,13 +74,14 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
             var pointsActionIndex = await _addressPointsSumByActionIndexRepository.GetFromBlockStateSetAsync(pointsActionIndexId, context.ChainId);
             if (pointsActionIndex != null)
             {
-                pointsActionIndex.Amount += pointsDetail.IncreaseAmount;
+                var amount = BigInteger.Parse(pointsActionIndex.Amount)+ pointsDetail.IncreaseValue;
+                pointsActionIndex.Amount = amount.ToString();
             }
             else
             {
                 pointsActionIndex = _objectMapper.Map<PointsChangedDetail, AddressPointsSumByActionIndex>(pointsDetail);
                 pointsActionIndex.Id = pointsActionIndexId;
-                pointsActionIndex.Amount = pointsDetail.IncreaseAmount;
+                pointsActionIndex.Amount = pointsDetail.IncreaseValue.ToString();
                 pointsActionIndex.CreateTime = context.BlockTime;
             }
             _objectMapper.Map(context, pointsActionIndex);
@@ -128,40 +131,40 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
     {
         newIndex = originIndex;
         var symbol = pointsState.PointsName;
-        var amount = pointsState.Balance;
+        var amount = pointsState.BalanceValue;
         if (symbol.EndsWith("-1"))
         {
-            newIndex.FirstSymbolAmount = amount;
+            newIndex.FirstSymbolAmount = amount.ToString();
         } else if (symbol.EndsWith("-2"))
         {
-            newIndex.SecondSymbolAmount = amount;
+            newIndex.SecondSymbolAmount = amount.ToString();
         } else if (symbol.EndsWith("-3"))
         {
-            newIndex.ThirdSymbolAmount = amount;
+            newIndex.ThirdSymbolAmount = amount.ToString();
         }
         else if (symbol.EndsWith("-4"))
         {
-            newIndex.FourSymbolAmount = amount;
+            newIndex.FourSymbolAmount = amount.ToString();
         }
         else if (symbol.EndsWith("-5"))
         {
-            newIndex.FiveSymbolAmount = amount;
+            newIndex.FiveSymbolAmount = amount.ToString();
         }
         else if (symbol.EndsWith("-6"))
         {
-            newIndex.SixSymbolAmount = amount;
+            newIndex.SixSymbolAmount = amount.ToString();
         }
         else if (symbol.EndsWith("-7"))
         {
-            newIndex.SevenSymbolAmount = amount;
+            newIndex.SevenSymbolAmount = amount.ToString();
         }
         else if (symbol.EndsWith("-8"))
         {
-            newIndex.EightSymbolAmount = amount;
+            newIndex.EightSymbolAmount = amount.ToString();
         }
         else if (symbol.EndsWith("-9"))
         {
-            newIndex.NineSymbolAmount = amount;
+            newIndex.NineSymbolAmount = amount.ToString();
         }
         else
         {
