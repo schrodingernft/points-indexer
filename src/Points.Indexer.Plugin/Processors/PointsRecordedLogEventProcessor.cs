@@ -61,7 +61,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
             }
 
             pointsLogIndex = _objectMapper.Map<PointsChangedDetail, AddressPointsLogIndex>(pointsDetail);
-            pointsLogIndex.Amount = pointsDetail.IncreaseValue != null ?pointsDetail.IncreaseValue.ToString() : "0";
+            pointsLogIndex.Amount = (pointsDetail.IncreaseValue !=null && pointsDetail.IncreaseValue >0) ?pointsDetail.IncreaseValue.ToString() : pointsDetail.IncreaseAmount.ToString();
             pointsLogIndex.Id = pointsLogIndexId;
             pointsLogIndex.CreateTime = context.BlockTime;
             _objectMapper.Map(context, pointsLogIndex);
@@ -72,16 +72,17 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
                 pointsDetail.Domain, pointsDetail.ActionName, pointsDetail.IncomeSourceType);
             var pointsActionIndexId = HashHelper.ComputeFrom(rawActionIndexId).ToHex();
             var pointsActionIndex = await _addressPointsSumByActionIndexRepository.GetFromBlockStateSetAsync(pointsActionIndexId, context.ChainId);
+            var increaseValue = (pointsDetail.IncreaseValue !=null && pointsDetail.IncreaseValue >0) ?pointsDetail.IncreaseValue.ToString() : pointsDetail.IncreaseAmount.ToString();
             if (pointsActionIndex != null)
             {
-                var amount = BigInteger.Parse(pointsActionIndex.Amount)+ pointsDetail.IncreaseValue;
+                var amount = BigInteger.Parse(pointsActionIndex.Amount) + increaseValue;
                 pointsActionIndex.Amount = amount.ToString();
             }
             else
             {
                 pointsActionIndex = _objectMapper.Map<PointsChangedDetail, AddressPointsSumByActionIndex>(pointsDetail);
                 pointsActionIndex.Id = pointsActionIndexId;
-                pointsActionIndex.Amount = pointsDetail.IncreaseValue.ToString();
+                pointsActionIndex.Amount = increaseValue;
                 pointsActionIndex.CreateTime = context.BlockTime;
             }
             _objectMapper.Map(context, pointsActionIndex);
@@ -131,7 +132,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
     {
         newIndex = originIndex;
         var symbol = pointsState.PointsName;
-        var amount = pointsState.BalanceValue;
+        var amount = (pointsState.BalanceValue !=null && pointsState.BalanceValue>=0) ?pointsState.BalanceValue : pointsState.Balance;
         if (symbol.EndsWith("-1"))
         {
             newIndex.FirstSymbolAmount = amount.ToString();
