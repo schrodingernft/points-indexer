@@ -51,5 +51,10 @@ public class PointsIndexerClientAutoMapperProfile : Profile
         CreateMap<LogEventContext, UserReferralCountIndex>().ReverseMap();
         CreateMap<UserReferralRecordIndex, UserReferralRecordsDto>().ReverseMap();
         CreateMap<UserReferralCountIndex, UserReferralCountsDto>().ReverseMap();
+        
+        CreateMap<AddressPointsSumBySymbolIndex, PointsSumDto>()
+            .ForMember(t => t.UpdateTime, m => m.MapFrom(f => f.UpdateTime.ToUtcMilliSeconds()))
+            .ForMember(t => t.DappName, m => m.MapFrom(f => f.DappId))
+            ;
     }
 }
