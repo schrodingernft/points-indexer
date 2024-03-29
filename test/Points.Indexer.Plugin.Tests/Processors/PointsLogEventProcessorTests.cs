@@ -87,9 +87,11 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             IncomeSourceType = IncomeSourceType.Inviter,
             PointsName = "TEST-1",
             IncreaseAmount = 100000,
+            IncreaseValue = "100000",
             ActionName = "Join",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
-            Balance = 40000000
+            Balance = 40000000,
+            BalanceValue = "40000000"
         });
         pointsRecordList.PointsDetails.Add(new PointsChangedDetail
         {
@@ -98,9 +100,12 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             IncomeSourceType = IncomeSourceType.Kol,
             PointsName = "TEST-2",
             IncreaseAmount = 200000,
+            IncreaseValue = "200000",
             ActionName = "Increase",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
-            Balance = 50000000
+            Balance = 50000000,
+            BalanceValue = "50000000"
+
         });
         pointsRecordList.PointsDetails.Add(new PointsChangedDetail
         {
@@ -109,9 +114,11 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             IncomeSourceType = IncomeSourceType.Inviter,
             PointsName = "TEST-6",
             IncreaseAmount = 400000,
+            IncreaseValue = "400000",
             ActionName = "Mint",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
-            Balance = 60000000
+            Balance = 60000000,
+            BalanceValue = "60000000"
         });
         
         var pointsRecorded = new PointsChanged()
@@ -166,7 +173,7 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             new GetPointsSumBySymbolDto()
             {
                 StartTime = DateTime.Now.AddHours(-1),
-                EndTime = DateTime.Now.AddHours(1)
+                EndTime = DateTime.Now.AddHours(1) 
             });
         pointsSumBySymbol.TotalRecordCount.ShouldBe(2);
     }

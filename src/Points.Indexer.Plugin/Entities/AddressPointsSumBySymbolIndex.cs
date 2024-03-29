@@ -1,3 +1,4 @@
+using System.Numerics;
 using AElf.Indexing.Elasticsearch;
 using AElfIndexer.Client;
 using Nest;
@@ -12,16 +13,16 @@ public class AddressPointsSumBySymbolIndex : AElfIndexerClientEntity<string>, II
     [Keyword] public string Domain { get; set; }
     [Keyword] public string DappId { get; set; }
     public IncomeSourceType Role { get; set; }
-    public long FirstSymbolAmount { get; set; } 
-    public long SecondSymbolAmount { get; set; }
-    public long ThirdSymbolAmount { get; set; } 
-    
-    public long FourSymbolAmount { get; set; }
-    public long FiveSymbolAmount { get; set; }
-    public long SixSymbolAmount { get; set; } 
-    public long SevenSymbolAmount { get; set; } 
-    public long EightSymbolAmount { get; set; } 
-    public long NineSymbolAmount { get; set; } 
+    [Keyword] public string FirstSymbolAmount { get; set; } 
+    [Keyword] public string SecondSymbolAmount { get; set; }
+    [Keyword] public string ThirdSymbolAmount { get; set; }
+
+    [Keyword] public string FourSymbolAmount { get; set; }
+    [Keyword] public string FiveSymbolAmount { get; set; }
+    [Keyword] public string SixSymbolAmount { get; set; } 
+    [Keyword] public string SevenSymbolAmount { get; set; } 
+    [Keyword] public string EightSymbolAmount { get; set; } 
+    [Keyword] public string NineSymbolAmount { get; set; } 
 
     public DateTime CreateTime { get; set; }
     public DateTime UpdateTime { get; set; }
