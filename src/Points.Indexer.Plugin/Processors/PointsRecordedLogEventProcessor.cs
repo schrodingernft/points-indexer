@@ -61,7 +61,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
             }
 
             pointsLogIndex = _objectMapper.Map<PointsChangedDetail, AddressPointsLogIndex>(pointsDetail);
-            pointsLogIndex.Amount = pointsDetail.IncreaseValue.Value ?? pointsDetail.IncreaseAmount.ToString();
+            pointsLogIndex.Amount = pointsDetail.IncreaseValue?.Value ?? pointsDetail.IncreaseAmount.ToString();
             pointsLogIndex.Id = pointsLogIndexId;
             pointsLogIndex.CreateTime = context.BlockTime;
             _objectMapper.Map(context, pointsLogIndex);
@@ -72,7 +72,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
                 pointsDetail.Domain, pointsDetail.ActionName, pointsDetail.IncomeSourceType);
             var pointsActionIndexId = HashHelper.ComputeFrom(rawActionIndexId).ToHex();
             var pointsActionIndex = await _addressPointsSumByActionIndexRepository.GetFromBlockStateSetAsync(pointsActionIndexId, context.ChainId);
-            var increaseValue = pointsDetail.IncreaseValue.Value ?? pointsDetail.IncreaseAmount.ToString();
+            var increaseValue = pointsDetail.IncreaseValue?.Value ?? pointsDetail.IncreaseAmount.ToString();
             if (pointsActionIndex != null)
             {
                 var amount = BigInteger.Parse(pointsActionIndex.Amount) + BigInteger.Parse(increaseValue);
@@ -132,7 +132,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
     {
         newIndex = originIndex;
         var symbol = pointsState.PointsName;
-        var amount = pointsState.BalanceValue.Value ?? pointsState.Balance.ToString();
+        var amount = pointsState.BalanceValue?.Value ?? pointsState.Balance.ToString();
         if (symbol.EndsWith("-1"))
         {
             newIndex.FirstSymbolAmount = amount;
