@@ -58,9 +58,9 @@ public class ReferralAcceptedLogEventProcessor : AElfLogEventProcessorBase<Refer
             Id = recordId,
             Domain = eventValue.Domain,
             DappId = eventValue.DappId.ToHex(),
-            Referrer = eventValue.Referrer.ToBase58(),
-            Invitee = eventValue.Invitee.ToBase58(),
-            Inviter = eventValue.Inviter.ToBase58(),
+            Referrer = eventValue.Referrer?.ToBase58() ?? string.Empty,
+            Invitee = eventValue.Invitee?.ToBase58() ?? string.Empty,
+            Inviter = eventValue.Inviter?.ToBase58() ?? string.Empty,
             CreateTime = context.BlockTime.ToUtcMilliSeconds()
         };
         _objectMapper.Map(context, recordIndex);
@@ -73,7 +73,7 @@ public class ReferralAcceptedLogEventProcessor : AElfLogEventProcessorBase<Refer
             Id = countId,
             Domain = eventValue.Domain,
             DappId = eventValue.DappId.ToHex(),
-            Referrer = eventValue.Referrer.ToBase58(),
+            Referrer = eventValue.Referrer?.ToBase58() ?? string.Empty,
             InviteeNumber = 0,
             CreateTime = context.BlockTime.ToUtcMilliSeconds(),
             UpdateTime = context.BlockTime.ToUtcMilliSeconds()
