@@ -2,7 +2,7 @@ namespace Points.Indexer.Plugin.GraphQL;
 
 public class PointsSumListDto
 {
-    public long TotalRecordCount { get; set; }
+    public long TotalCount { get; set; }
 
     public List<PointsSumDto> Data { get; set; }
 }

@@ -3,6 +3,7 @@ using AElfIndexer.Client;
 using AElfIndexer.Grains.State.Client;
 using GraphQL;
 using Nest;
+using Points.Contracts.Point;
 using Points.Indexer.Plugin.Entities;
 using Volo.Abp.ObjectMapping;
 
@@ -28,8 +29,8 @@ public partial class Query
 
         mustQuery.Add(q => q.Terms(i =>
             i.Field(f => f.DappId).Terms(input.DappId)));
-        mustQuery.Add(q => q.Terms(i =>
-            i.Field(f => f.Role).Terms(OperatorRole.Kol)));
+        mustQuery.Add(q => q.Term(i =>
+            i.Field(f => f.Role).Value(IncomeSourceType.Kol)));
         
         QueryContainer Filter(QueryContainerDescriptor<AddressPointsSumBySymbolIndex> f) =>
             f.Bool(b => b.Must(mustQuery));
@@ -41,7 +42,7 @@ public partial class Query
         return new PointsSumListDto
         {
             Data = dataList,
-            TotalRecordCount = recordList.Item1
+            TotalCount = recordList.Item1
         };
     }
     
@@ -82,7 +83,7 @@ public partial class Query
         return new PointsSumListDto
         {
             Data = dataList,
-            TotalRecordCount = recordList.Item1
+            TotalCount = recordList.Item1
         };
     }
     
