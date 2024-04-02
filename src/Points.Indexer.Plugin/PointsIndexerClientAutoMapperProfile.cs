@@ -12,7 +12,16 @@ public class PointsIndexerClientAutoMapperProfile : Profile
     public PointsIndexerClientAutoMapperProfile()
     {
         CreateMap<OperatorDomainIndex, OperatorDomainDto>();
-        CreateMap<AddressPointsSumBySymbolIndex, PointsSumBySymbolDto>();
+        CreateMap<AddressPointsSumBySymbolIndex, PointsSumBySymbolDto>()
+            .ForMember(t => t.FirstSymbolAmount, m => m.MapFrom(f => f.FirstSymbolAmount ?? "0"))
+            .ForMember(t => t.SecondSymbolAmount, m => m.MapFrom(f => f.SecondSymbolAmount ?? "0"))
+            .ForMember(t => t.ThirdSymbolAmount, m => m.MapFrom(f => f.ThirdSymbolAmount ?? "0"))
+            .ForMember(t => t.FourSymbolAmount, m => m.MapFrom(f => f.FourSymbolAmount ?? "0"))
+            .ForMember(t => t.FiveSymbolAmount, m => m.MapFrom(f => f.FiveSymbolAmount ?? "0"))
+            .ForMember(t => t.SixSymbolAmount, m => m.MapFrom(f => f.SixSymbolAmount ?? "0"))
+            .ForMember(t => t.SevenSymbolAmount, m => m.MapFrom(f => f.SevenSymbolAmount ?? "0"))
+            .ForMember(t => t.EightSymbolAmount, m => m.MapFrom(f => f.EightSymbolAmount ?? "0"))
+            .ForMember(t => t.NineSymbolAmount, m => m.MapFrom(f => f.NineSymbolAmount ?? "0"));
         CreateMap<AddressPointsSumByActionIndex, PointsSumByActionDto>();
         CreateMap<AddressPointsLogIndex, AddressPointsLogDto>();
         CreateMap<LogEventContext, OperatorUserIndex>().ReverseMap();

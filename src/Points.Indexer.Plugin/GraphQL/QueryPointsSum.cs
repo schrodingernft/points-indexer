@@ -18,7 +18,12 @@ public partial class Query
         GetRankingListInput input)
     {
         var mustQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>();
-        
+        var mustNotQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>
+        {
+            q => q.Term(i =>
+                i.Field(f => f.Domain).Value("schrodingerai.com"))
+        };
+        mustQuery.Add(q => q.Bool(b => b.MustNot(mustNotQuery)));
         if (!input.Keyword.IsNullOrWhiteSpace())
         {
             var shouldQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>();
@@ -59,6 +64,12 @@ public partial class Query
             i.Field(f => f.Address).Terms(input.Address)));
         mustQuery.Add(q => q.Terms(i =>
             i.Field(f => f.DappId).Terms(input.DappId)));
+        var mustNotQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>
+        {
+            q => q.Term(i =>
+                i.Field(f => f.Domain).Value("schrodingerai.com"))
+        };
+        mustQuery.Add(q => q.Bool(b => b.MustNot(mustNotQuery)));
 
         if (input.Type == OperatorRole.All)
         {
