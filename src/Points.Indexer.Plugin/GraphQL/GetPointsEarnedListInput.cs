@@ -13,8 +13,8 @@ public class GetPointsEarnedListInput : PagedAndSortedResultRequestDto
 
 public enum OperatorRole
 {
-    Inviter,
-    Kol,
-    User,
+    Inviter = 2,
+    Kol = 1,
+    User = 0,
     All = -1
 }

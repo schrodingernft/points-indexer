@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using AElfIndexer.Client;
 using AElfIndexer.Grains.State.Client;
 using GraphQL;
+using Microsoft.Extensions.Logging;
 using Nest;
 using Points.Contracts.Point;
 using Points.Indexer.Plugin.Entities;
@@ -18,12 +19,7 @@ public partial class Query
         GetRankingListInput input)
     {
         var mustQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>();
-        var mustNotQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>
-        {
-            q => q.Term(i =>
-                i.Field(f => f.Domain).Value("schrodingerai.com"))
-        };
-        mustQuery.Add(q => q.Bool(b => b.MustNot(mustNotQuery)));
+     
         if (!input.Keyword.IsNullOrWhiteSpace())
         {
             var shouldQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>();
@@ -56,21 +52,17 @@ public partial class Query
     public static async Task<PointsSumListDto> GetPointsEarnedList(
         [FromServices] IAElfIndexerClientEntityRepository<AddressPointsSumBySymbolIndex, LogEventInfo> repository,
         [FromServices] IObjectMapper objectMapper,
+        [FromServices] ILogger<AddressPointsSumBySymbolIndex> logger,
         GetPointsEarnedListInput input)
     {
+        logger.LogDebug("query input role: {},{}", input.Type, input.Type.ToString());
         var mustQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>();
         
         mustQuery.Add(q => q.Terms(i =>
             i.Field(f => f.Address).Terms(input.Address)));
         mustQuery.Add(q => q.Terms(i =>
             i.Field(f => f.DappId).Terms(input.DappId)));
-        var mustNotQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>
-        {
-            q => q.Term(i =>
-                i.Field(f => f.Domain).Value("schrodingerai.com"))
-        };
-        mustQuery.Add(q => q.Bool(b => b.MustNot(mustNotQuery)));
-
+        
         if (input.Type == OperatorRole.All)
         {
             var shouldQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumBySymbolIndex>, QueryContainer>>();
