@@ -44,7 +44,7 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
     
     protected override async Task HandleEventAsync(PointsChanged eventValue, LogEventContext context)
     {
-        _logger.Info("PointsRecorded: {eventValue} context: {context}",JsonConvert.SerializeObject(eventValue), 
+        _logger.Debug("PointsRecorded: {eventValue} context: {context}",JsonConvert.SerializeObject(eventValue), 
             JsonConvert.SerializeObject(context));
 
         foreach (var pointsDetail in eventValue.PointsChangedDetails.PointsDetails)
@@ -138,6 +138,30 @@ public class PointsRecordedLogEventProcessor : AElfLogEventProcessorBase<PointsC
         } else if (symbol.EndsWith("-3"))
         {
             newIndex.ThirdSymbolAmount = amount;
+        }
+        else if (symbol.EndsWith("-4"))
+        {
+            newIndex.FourSymbolAmount = amount;
+        }
+        else if (symbol.EndsWith("-5"))
+        {
+            newIndex.FiveSymbolAmount = amount;
+        }
+        else if (symbol.EndsWith("-6"))
+        {
+            newIndex.SixSymbolAmount = amount;
+        }
+        else if (symbol.EndsWith("-7"))
+        {
+            newIndex.SevenSymbolAmount = amount;
+        }
+        else if (symbol.EndsWith("-8"))
+        {
+            newIndex.EightSymbolAmount = amount;
+        }
+        else if (symbol.EndsWith("-9"))
+        {
+            newIndex.NineSymbolAmount = amount;
         }
         else
         {
