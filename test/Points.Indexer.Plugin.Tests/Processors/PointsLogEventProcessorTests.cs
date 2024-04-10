@@ -23,40 +23,40 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
         var context = MockLogEventContext();
         var state = await MockBlockState(context);
 
-        var pointsStateList = new PointsStateList();
-        pointsStateList.PointStates.Add( new PointsState
+        var pointsDetailList = new PointsChangedDetails();
+        pointsDetailList.PointsDetails.Add( new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            Address = Address.FromBase58("xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"),
+            PointsReceiver = Address.FromBase58("xsnQafDAhNTeYcooptETqWnYBksFGGXxfcQyJJ5tmu6Ak9ZZt"),
             IncomeSourceType = IncomeSourceType.Inviter,
-            PointName = "TEST-1",
+            PointsName = "TEST-1",
             Balance = 10000000
         });
-        pointsStateList.PointStates.Add(new PointsState
+        pointsDetailList.PointsDetails.Add(new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            Address = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
+            PointsReceiver = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
             IncomeSourceType = IncomeSourceType.Kol,
-            PointName = "TEST-2",
+            PointsName = "TEST-2",
             Balance = 20000000
         });
-        pointsStateList.PointStates.Add(new PointsState
+        pointsDetailList.PointsDetails.Add(new PointsChangedDetail
         {
             Domain = "test.dapp.io",
-            Address = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
+            PointsReceiver = Address.FromBase58("2NxwCPAGJr4knVdmwhb1cK7CkZw5sMJkRDLnT7E2GoDP2dy5iZ"),
             IncomeSourceType = IncomeSourceType.Inviter,
-            PointName = "TEST-6",
+            PointsName = "TEST-6",
             Balance = 40000000
         });
         
-        var pointsUpdated = new PointsUpdated()
+        var pointsUpdated = new PointsChanged()
         {
-            PointStateList = pointsStateList
+            PointsChangedDetails = pointsDetailList
         };
         
         var logEvent = MockLogEventInfo(pointsUpdated.ToLogEvent());
         
-        var updatedProcessor = GetRequiredService<PointsUpdatedLogEventProcessor>();
+        var updatedProcessor = GetRequiredService<PointsRecordedLogEventProcessor>();
         var symbolIndexRepository = GetRequiredService<IAElfIndexerClientEntityRepository<AddressPointsSumBySymbolIndex, LogEventInfo>>();
         var objectMapper = GetRequiredService<IObjectMapper>();
 
@@ -87,9 +87,11 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             IncomeSourceType = IncomeSourceType.Inviter,
             PointsName = "TEST-1",
             IncreaseAmount = 100000,
+            IncreaseValue = "100000",
             ActionName = "Join",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
-            Balance = 40000000
+            Balance = 40000000,
+            BalanceValue = "40000000"
         });
         pointsRecordList.PointsDetails.Add(new PointsChangedDetail
         {
@@ -98,9 +100,12 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             IncomeSourceType = IncomeSourceType.Kol,
             PointsName = "TEST-2",
             IncreaseAmount = 200000,
+            IncreaseValue = "200000",
             ActionName = "Increase",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
-            Balance = 50000000
+            Balance = 50000000,
+            BalanceValue = "50000000"
+
         });
         pointsRecordList.PointsDetails.Add(new PointsChangedDetail
         {
@@ -109,9 +114,11 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             IncomeSourceType = IncomeSourceType.Inviter,
             PointsName = "TEST-6",
             IncreaseAmount = 400000,
+            IncreaseValue = "400000",
             ActionName = "Mint",
             DappId = HashHelper.ComputeFrom("Schrodinger"),
-            Balance = 60000000
+            Balance = 60000000,
+            BalanceValue = "60000000"
         });
         
         var pointsRecorded = new PointsChanged()
@@ -166,7 +173,7 @@ public class PointsLogEventProcessorTests : PointsIndexerPluginTestBase
             new GetPointsSumBySymbolDto()
             {
                 StartTime = DateTime.Now.AddHours(-1),
-                EndTime = DateTime.Now.AddHours(1)
+                EndTime = DateTime.Now.AddHours(1) 
             });
         pointsSumBySymbol.TotalRecordCount.ShouldBe(2);
     }
