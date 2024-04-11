@@ -12,6 +12,8 @@ namespace Points.Indexer.Plugin.GraphQL;
 
 public partial class Query
 {
+    private const string SortScriptSourceFormat = "doc['{0}'].value as Integer";
+
     [Name("getRankingList")]
     public static async Task<PointsSumListDto> GetRankingList(
         [FromServices] IAElfIndexerClientEntityRepository<AddressPointsSumBySymbolIndex, LogEventInfo> repository,
@@ -37,8 +39,25 @@ public partial class Query
             f.Bool(b => b.Must(mustQuery));
         
         var sortType = input.Sorting == "DESC" ? SortOrder.Descending : SortOrder.Ascending;
-        var recordList = await repository.GetListAsync(Filter, sortType: sortType,
-            sortExp: GetSortBy(input.SortingKeyWord), skip: input.SkipCount, limit: input.MaxResultCount);
+        // var recordList = await repository.GetListAsync(Filter, sortType: sortType,
+        //     sortExp: GetSortBy(input.SortingKeyWord), skip: input.SkipCount, limit: input.MaxResultCount);
+        //
+        var sortField = input.SortingKeyWord switch
+        {   
+            SortingKeywordType.FirstSymbolAmount => "FirstSymbolAmount",
+            SortingKeywordType.SecondSymbolAmount => "SecondSymbolAmount",
+            SortingKeywordType.FiveSymbolAmount => "FiveSymbolAmount",
+            _ => "FirstSymbolAmount"
+        };
+        var sortScriptSource = String.Format(SortScriptSourceFormat, sortField);
+        
+        IPromise<IList<ISort>> Sort(SortDescriptor<AddressPointsSumBySymbolIndex> s) =>
+            s.Script(script => script.Type("number")
+                .Script(scriptDescriptor => scriptDescriptor.Source(sortScriptSource))
+                .Order(sortType));
+        
+        var recordList = await repository.GetSortListAsync(Filter, sortFunc: Sort, skip: input.SkipCount, limit: input.MaxResultCount);
+        
         var dataList = objectMapper.Map<List<AddressPointsSumBySymbolIndex>, List<PointsSumDto>>(recordList.Item2);
         return new PointsSumListDto
         {
