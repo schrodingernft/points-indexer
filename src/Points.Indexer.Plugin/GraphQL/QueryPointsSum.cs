@@ -12,7 +12,7 @@ namespace Points.Indexer.Plugin.GraphQL;
 
 public partial class Query
 {
-    private const string SortScriptSourceFormat = "if(params._source.{0} == null) return 0;else return Long.parseLong(params._source.{1})";
+    private const string SortScriptSourceFormat = "if(params._source.{0} == null) return 0;else return Double.parseDouble(params._source.{1})";
 
     [Name("getRankingList")]
     public static async Task<PointsSumListDto> GetRankingList(
