@@ -150,6 +150,44 @@ public partial class Query
         };
     }
     
+    
+    [Name("getPointsRecordByName")]
+    public static async Task<PointsSumByActionDtoList> GetPointsRecordByName(
+        [FromServices] IAElfIndexerClientEntityRepository<AddressPointsSumByActionIndex, LogEventInfo> repository,
+        [FromServices] IObjectMapper objectMapper,
+        GetPointsRecordByNameDto input)
+    {
+
+        var mustQuery = new List<Func<QueryContainerDescriptor<AddressPointsSumByActionIndex>, QueryContainer>>();
+
+        if (input.DappId != "")
+        {
+            mustQuery.Add(q => q.Term(i => i.Field(f => f.DappId).Value(input.DappId)));
+        }
+        
+        if (input.Address != "")
+        {
+            mustQuery.Add(q => q.Term(i => i.Field(f => f.Address).Value(input.Address)));
+        }
+        
+        if (input.PointsName != "")
+        {
+            mustQuery.Add(q => q.Term(i => i.Field(f => f.PointsName).Value(input.PointsName)));
+        }
+
+        QueryContainer Filter(QueryContainerDescriptor<AddressPointsSumByActionIndex> f) =>
+            f.Bool(b => b.Must(mustQuery));
+
+        var recordList = await repository.GetListAsync(Filter);
+        
+        var dataList = objectMapper.Map<List<AddressPointsSumByActionIndex>, List<PointsSumByActionDto>>(recordList.Item2);
+        return new PointsSumByActionDtoList
+        {
+            Data = dataList,
+            TotalRecordCount = recordList.Item1
+        };
+    }
+    
     [Name("getAddressPointLog")]
     public static async Task<AddressPointsLogDtoList> GetAddressPointLog(
         [FromServices] IAElfIndexerClientEntityRepository<AddressPointsLogIndex, LogEventInfo> repository,
