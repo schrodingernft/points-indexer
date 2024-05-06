@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C3022ECE-9FC4-4F50-8EDB-85532F6ADC8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BCA05EEC-6025-4CE7-8428-3E469E7BB9DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Points.Indexer.Plugin", "src\Points.Indexer.Plugin\Points.Indexer.Plugin.csproj", "{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Points.Indexer.TestBase", "test\Points.Indexer.TestBase\Points.Indexer.TestBase.csproj", "{296E4509-C190-4AF2-86BA-7BEDE56AB12A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Points.Indexer.Plugin.Tests", "test\Points.Indexer.Plugin.Tests\Points.Indexer.Plugin.Tests.csproj", "{FAAD4D6F-81E5-438A-AB6A-41D716B6C9D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Points.Indexer.Orleans.TestBase", "test\Points.Indexer.Orleans.TestBase\Points.Indexer.Orleans.TestBase.csproj", "{CDE5D720-D730-4CE3-8593-AFA83C9AB93E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838} = {C3022ECE-9FC4-4F50-8EDB-85532F6ADC8B}
+		{296E4509-C190-4AF2-86BA-7BEDE56AB12A} = {BCA05EEC-6025-4CE7-8428-3E469E7BB9DA}
+		{FAAD4D6F-81E5-438A-AB6A-41D716B6C9D2} = {BCA05EEC-6025-4CE7-8428-3E469E7BB9DA}
+		{CDE5D720-D730-4CE3-8593-AFA83C9AB93E} = {BCA05EEC-6025-4CE7-8428-3E469E7BB9DA}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA7108F-3FA2-4433-ABEB-4D6A2F357838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{296E4509-C190-4AF2-86BA-7BEDE56AB12A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{296E4509-C190-4AF2-86BA-7BEDE56AB12A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{296E4509-C190-4AF2-86BA-7BEDE56AB12A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{296E4509-C190-4AF2-86BA-7BEDE56AB12A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAAD4D6F-81E5-438A-AB6A-41D716B6C9D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAAD4D6F-81E5-438A-AB6A-41D716B6C9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAAD4D6F-81E5-438A-AB6A-41D716B6C9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAAD4D6F-81E5-438A-AB6A-41D716B6C9D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDE5D720-D730-4CE3-8593-AFA83C9AB93E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDE5D720-D730-4CE3-8593-AFA83C9AB93E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDE5D720-D730-4CE3-8593-AFA83C9AB93E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE5D720-D730-4CE3-8593-AFA83C9AB93E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
